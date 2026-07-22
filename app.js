@@ -275,13 +275,12 @@
     }).join('');
     const filterId = `donutShadow-${panel.dataset.panel}`;
 
-    container.innerHTML = `<div class="donut3d-scene donut3d-webgl" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
+    container.innerHTML = `<div class="donut3d-scene donut3d-render" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
       <div class="donut3d-float">
-        <canvas class="donut3d-canvas" aria-hidden="true"></canvas>
+        <img class="donut3d-image" src="assets/portfolio-3d.png" alt="" aria-hidden="true">
         <div class="donut3d-center"><span>${label}</span><strong>${value}</strong></div>
       </div>
     </div>`;
-    renderWebGLDonut(container.querySelector('.donut3d-canvas'), chartData);
   }
 
   // Tier pills switcher
