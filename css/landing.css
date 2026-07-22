@@ -839,12 +839,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0;
+    gap: 15px; /* Thêm khoảng cách và cho phép xuống dòng */
+    flex-wrap: wrap;
 }
 
 .use-item-wrapper-1,
 .use-item-wrapper-2,
-.use-item-wrapper-3 {
+.use-item-wrapper-3,
+.use-item-wrapper-4 { /* Thêm wrapper cho item thứ 4 */
     display: flex;
     justify-content: center;
     float: left;
@@ -986,6 +988,10 @@
 
 .use-item__qr .aas-robo-image {
     width: 189px;
+}
+
+.realme-image {
+    width: 189px; /* Thêm class cho ảnh realme */
 }
 
 .free-use-section .use-item__line {
@@ -1134,7 +1140,8 @@
 
     .use-item-wrapper-1,
     .use-item-wrapper-2,
-    .use-item-wrapper-3 {
+    .use-item-wrapper-3,
+    .use-item-wrapper-4 { /* Thêm wrapper cho item thứ 4 */
         float: none;
         width: 100%;
     }
