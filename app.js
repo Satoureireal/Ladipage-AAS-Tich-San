@@ -218,6 +218,39 @@
   }
 
   // Native animated 3D donut. This intentionally has no third-party dependency.
+  function renderWebGLDonut(canvas, data) {
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: true });
+    if (!gl) return false;
+    const vertexShader = `attribute vec3 p;attribute vec3 n;attribute vec3 c;uniform float spin;uniform float aspect;varying vec3 color;varying float light;void main(){float cs=cos(spin),sn=sin(spin);mat3 rz=mat3(cs,-sn,0.,sn,cs,0.,0.,0.,1.);float t=.94;mat3 rx=mat3(1.,0.,0.,0.,cos(t),-sin(t),0.,sin(t),cos(t));vec3 q=rx*rz*p;q.z-=4.2;vec3 nn=normalize(rx*rz*n);light=.28+.72*max(dot(nn,normalize(vec3(-.35,.65,.7))),0.);color=c;float f=2.15;gl_Position=vec4(q.x*f/aspect,q.y*f,((101.)/(-99.))*q.z-(200./99.),-q.z);}`;
+    const fragmentShader = `precision mediump float;varying vec3 color;varying float light;void main(){gl_FragColor=vec4(color*light,1.);}`;
+    const compile = (type, source) => { const s=gl.createShader(type); gl.shaderSource(s,source); gl.compileShader(s); return s; };
+    const program=gl.createProgram(); gl.attachShader(program,compile(gl.VERTEX_SHADER,vertexShader)); gl.attachShader(program,compile(gl.FRAGMENT_SHADER,fragmentShader)); gl.linkProgram(program); gl.useProgram(program);
+    const positions=[], normals=[], colors=[];
+    const rgb = value => { const m=value.match(/[\d.]+/g)?.map(Number)||[16,185,129]; return m.slice(0,3).map(v=>v/255); };
+    const push=(a,b,c,n,col)=>{ [a,b,c].forEach(v=>positions.push(...v)); for(let i=0;i<3;i++){normals.push(...n);colors.push(...col);} };
+    const outer=1.42, inner=.78, h=.46, steps=44;
+    let angle=-Math.PI/2;
+    data.forEach(item=>{
+      const end=angle+Math.PI*2*item.value/100, col=rgb(item.color), dark=col.map(v=>v*.68);
+      for(let i=0;i<steps;i++){
+        const a=angle+(end-angle)*i/steps,b=angle+(end-angle)*(i+1)/steps;
+        const ot1=[Math.cos(a)*outer,Math.sin(a)*outer,h/2],ot2=[Math.cos(b)*outer,Math.sin(b)*outer,h/2],it1=[Math.cos(a)*inner,Math.sin(a)*inner,h/2],it2=[Math.cos(b)*inner,Math.sin(b)*inner,h/2];
+        const ob1=[ot1[0],ot1[1],-h/2],ob2=[ot2[0],ot2[1],-h/2],ib1=[it1[0],it1[1],-h/2],ib2=[it2[0],it2[1],-h/2];
+        push(ot1,ot2,it2,[0,0,1],col); push(ot1,it2,it1,[0,0,1],col);
+        push(ob2,ob1,ib1,[0,0,-1],dark); push(ob2,ib1,ib2,[0,0,-1],dark);
+        const mid=(a+b)/2; push(ot2,ot1,ob1,[Math.cos(mid),Math.sin(mid),0],col); push(ot2,ob1,ob2,[Math.cos(mid),Math.sin(mid),0],dark);
+        push(it1,it2,ib2,[-Math.cos(mid),-Math.sin(mid),0],dark); push(it1,ib2,ib1,[-Math.cos(mid),-Math.sin(mid),0],dark);
+      }
+      const radial=(a,flip)=>{const o1=[Math.cos(a)*outer,Math.sin(a)*outer,h/2],i1=[Math.cos(a)*inner,Math.sin(a)*inner,h/2],o2=[o1[0],o1[1],-h/2],i2=[i1[0],i1[1],-h/2],n=[-Math.sin(a)*(flip?-1:1),Math.cos(a)*(flip?-1:1),0];push(o1,i1,i2,n,dark);push(o1,i2,o2,n,dark);}; radial(angle,false);radial(end,true);angle=end;
+    });
+    const bind=(name,size,values)=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};
+    bind('p',3,positions);bind('n',3,normals);bind('c',3,colors);
+    const spinLoc=gl.getUniformLocation(program,'spin'),aspectLoc=gl.getUniformLocation(program,'aspect');
+    let start=performance.now(), stopped=false;
+    const draw=now=>{if(stopped||!canvas.isConnected)return;const dpr=Math.min(devicePixelRatio||1,2),w=canvas.clientWidth*dpr,hc=canvas.clientHeight*dpr;if(canvas.width!==w||canvas.height!==hc){canvas.width=w;canvas.height=hc;gl.viewport(0,0,w,hc);}gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.uniform1f(aspectLoc,w/hc);const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;gl.uniform1f(spinLoc,reduced?.18:.18+Math.sin((now-start)/2600)*.16);gl.drawArrays(gl.TRIANGLES,0,positions.length/3);requestAnimationFrame(draw);};
+    requestAnimationFrame(draw); canvas._stopDonut=()=>{stopped=true;}; return true;
+  }
+
   function createNative3dDonut(panel) {
     const container = panel.querySelector('.donut-wrap');
     if (!container) return;
@@ -242,16 +275,13 @@
     }).join('');
     const filterId = `donutShadow-${panel.dataset.panel}`;
 
-    container.innerHTML = `<div class="donut3d-scene" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
+    container.innerHTML = `<div class="donut3d-scene donut3d-webgl" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
       <div class="donut3d-float">
-        <svg class="donut3d-chart" viewBox="0 0 220 220" aria-hidden="true">
-          <defs><filter id="${filterId}" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="18" stdDeviation="10" flood-color="#052e24" flood-opacity=".32"/></filter></defs>
-          <g class="donut3d-depth" filter="url(#${filterId})"><circle cx="110" cy="122" r="${radius}"/><circle cx="110" cy="117" r="${radius}"/><circle cx="110" cy="112" r="${radius}"/></g>
-          <g class="donut3d-face"><circle class="donut3d-track" cx="110" cy="110" r="${radius}"/>${segments}<ellipse class="donut3d-highlight" cx="110" cy="91" rx="57" ry="32"/></g>
-        </svg>
+        <canvas class="donut3d-canvas" aria-hidden="true"></canvas>
         <div class="donut3d-center"><span>${label}</span><strong>${value}</strong></div>
-      </div><span class="donut3d-orbit" aria-hidden="true"></span>
+      </div>
     </div>`;
+    renderWebGLDonut(container.querySelector('.donut3d-canvas'), chartData);
   }
 
   // Tier pills switcher

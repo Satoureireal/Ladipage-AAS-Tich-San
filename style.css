@@ -1109,6 +1109,9 @@ body {
 .donut3d-scene { position:relative; width:min(100%,360px); aspect-ratio:1; display:grid; place-items:center; perspective:900px; }
 .donut3d-float { position:relative; width:88%; aspect-ratio:1; transform-style:preserve-3d; animation:donut3d-float 4.5s ease-in-out infinite; }
 .donut3d-chart { width:100%; height:100%; overflow:visible; transform:rotateX(57deg) rotateZ(-90deg); transform-origin:center; transform-style:preserve-3d; }
+.donut3d-canvas { width:100%; height:100%; display:block; filter:drop-shadow(0 24px 16px rgba(2,61,40,.28)); }
+.donut3d-webgl .donut3d-float { width:100%; }
+.donut3d-webgl .donut3d-center { width:27%; transform:translate(-50%,-33%); background:radial-gradient(circle at 40% 28%,#fff,#edf8f2 68%,#cfe6da); box-shadow:0 10px 24px rgba(2,61,40,.2),inset 0 1px 2px #fff; }
 .donut3d-track,.donut3d-segment,.donut3d-depth circle { fill:none; stroke-width:34; }
 .donut3d-track { stroke:#e7eee9; }
 .donut3d-depth circle { stroke:#075b43; opacity:.52; }
