@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAS TÍCH SẢN — Tích sản mỗi ngày, kiến tạo tương lai! | Smart Invest (AAS)</title>
+  <meta name="description" content="AAS Tích sản: Giải pháp đầu tư tích sản định kỳ chuyên nghiệp được nghiên cứu & phát triển bởi Công ty Cổ phần Chứng khoán Smart Invest (AAS). Nâng tầm tài sản bền vững.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- AAS Tích Sản Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       NAVIGATION HEADER — AAS.COM.VN MENU STRUCTURE
+       ===================================================== -->
+  <header class="nav-header" id="navHeader">
+    <div class="container nav-wrap">
+
+      <!-- Logo -->
+      <a href="https://aas.com.vn/" class="brand-logo" title="Smart Invest (AAS)">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="10" fill="url(#lg1)"/>
+          <path d="M10 26L18 10L26 26H21.5L18 18.5L14.5 26H10Z" fill="#FFFFFF"/>
+          <circle cx="18" cy="13" r="2.5" fill="#E3B07A"/>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#10B981"/>
+              <stop offset="1" stop-color="#065F46"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AAS <span class="brand-badge">Tích Sản</span></span>
+      </a>
+
+      <!-- Desktop Nav Menu (cấu trúc aas.com.vn) -->
+      <nav class="nav-menu">
+
+        <div class="nav-item">
+          <a href="https://aas.com.vn/" class="nav-link">Trang chủ</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#gioi-thieu" class="nav-link">Cá nhân <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="#hero" class="dropdown-link featured-item">AAS Tích Sản</a>
+            <a href="#danh-muc" class="dropdown-link">5 Danh mục Đầu tư</a>
+            <a href="#cong-cu" class="dropdown-link">Công cụ Tích sản</a>
+            <a href="https://aas.com.vn/khach-hang-ca-nhan/dich-vu-chung-khoan/" class="dropdown-link">Dịch vụ Chứng khoán</a>
+            <a href="https://aas.com.vn/khach-hang-ca-nhan/san-pham-dau-tu/" class="dropdown-link">Sản phẩm Đầu tư</a>
+            <a href="https://aas.com.vn/khach-hang-ca-nhan/quan-li-tai-san/" class="dropdown-link">Quản lý Tài sản</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="https://aas.com.vn/aas-research/" class="nav-link">AAS Research <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="https://aas.com.vn/danh-muc-ban-tin-thi-truong/ban-tin-thi-truong-ngay/" class="dropdown-link">Bản tin thị trường ngày</a>
+            <a href="https://aas.com.vn/danh-muc-ban-tin-thi-truong/bao-cao-vi-mo/" class="dropdown-link">Báo cáo Vĩ mô</a>
+            <a href="https://aas.com.vn/danh-muc-ban-tin-thi-truong/bao-cao-nganh/" class="dropdown-link">Báo cáo Ngành</a>
+            <a href="https://aas.com.vn/danh-muc-ban-tin-thi-truong/bao-cao-chien-luoc/" class="dropdown-link">Báo cáo Chiến lược</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#faq" class="nav-link">Hỗ trợ <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="#faq" class="dropdown-link">Câu hỏi Thường gặp</a>
+            <a href="https://aas.com.vn/aas-ho-tro/huong-dan-giao-dich/" class="dropdown-link">Cẩm nang Giao dịch</a>
+            <a href="#faq" class="dropdown-link">Liên hệ & Góp ý</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="https://aas.com.vn/category/aas-academy/" class="nav-link">Kiến thức <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="https://aas.com.vn/category/nhap-mon-dau-tu/" class="dropdown-link">Nhập môn Đầu tư</a>
+            <a href="https://aas.com.vn/category/phan-tich-co-ban/" class="dropdown-link">Phân tích Cơ bản</a>
+            <a href="https://aas.com.vn/category/phan-tich-ky-thuat/" class="dropdown-link">Phân tích Kỹ thuật</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="https://aas.com.vn/gioi-thieu-aas/" class="nav-link">Về AAS <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="https://aas.com.vn/gioi-thieu-aas/" class="dropdown-link">Thông tin Doanh nghiệp</a>
+            <a href="https://aas.com.vn/danh-muc-thong-tin-co-dong/cong-bo-thong-tin/" class="dropdown-link">Thông tin Cổ đông</a>
+            <a href="https://aas.com.vn/co-hoi-nghe-nghiep/" class="dropdown-link">Cơ hội Nghề nghiệp</a>
+          </div>
+        </div>
+
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" target="_blank" rel="noopener">Mở Tài Khoản</a>
+        <button class="burger-btn" id="burgerBtn" aria-label="Mở menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu-btn" id="closeMenuBtn">&times;</button>
+
+    <div class="mobile-nav-group">
+      <div class="mobile-nav-title">AAS Tích Sản</div>
+      <a href="#hero" class="nav-link mobile-close-trigger" style="color:var(--brand-gold-light);font-weight:700;">AAS Tích Sản</a>
+      <a href="#gioi-thieu" class="nav-link mobile-close-trigger">Giải pháp Tích sản</a>
+      <a href="#danh-muc" class="nav-link mobile-close-trigger">5 Danh mục Đầu tư</a>
+      <a href="#cong-cu" class="nav-link mobile-close-trigger">Công cụ Tính toán</a>
+    </div>
+
+    <div class="mobile-nav-group">
+      <div class="mobile-nav-title">Khách hàng Cá nhân</div>
+      <a href="https://aas.com.vn/khach-hang-ca-nhan/dich-vu-chung-khoan/" class="nav-link">Dịch vụ Chứng khoán</a>
+      <a href="https://aas.com.vn/khach-hang-ca-nhan/san-pham-dau-tu/" class="nav-link">Sản phẩm Đầu tư</a>
+      <a href="https://aas.com.vn/khach-hang-ca-nhan/quan-li-tai-san/" class="nav-link">Quản lý Tài sản</a>
+    </div>
+
+    <div class="mobile-nav-group">
+      <div class="mobile-nav-title">Khách hàng Tổ chức</div>
+      <a href="https://aas.com.vn/khach-hang-to-chuc/dich-vu-thi-truong-von/" class="nav-link">Thị trường Vốn</a>
+      <a href="https://aas.com.vn/khach-hang-to-chuc/dich-vu-thi-truong-no-2/" class="nav-link">Thị trường Nợ</a>
+      <a href="https://aas.com.vn/khach-hang-to-chuc/tu-van-ma/" class="nav-link">Tư vấn M&A</a>
+    </div>
+
+    <div class="mobile-nav-group">
+      <div class="mobile-nav-title">Nghiên cứu & Học tập</div>
+      <a href="https://aas.com.vn/aas-research/" class="nav-link">AAS Research</a>
+      <a href="https://aas.com.vn/category/aas-academy/" class="nav-link">AAS Academy</a>
+      <a href="#faq" class="nav-link mobile-close-trigger">Hỏi đáp & Liên hệ</a>
+    </div>
+
+    <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:10px;width:100%;text-align:center;" target="_blank" rel="noopener">Tích sản ngay</a>
+  </div>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- =====================================================
+       SECTION 1 — HERO
+       ===================================================== -->
+  <section class="hero-section on-dark" id="hero">
+    <div class="glow-layer"></div>
+    <!-- Animated floating particles -->
+    <div class="hero-particles" aria-hidden="true">
+      <span class="particle p1"></span>
+      <span class="particle p2"></span>
+      <span class="particle p3"></span>
+      <span class="particle p4"></span>
+      <span class="particle p5"></span>
+      <span class="particle p6"></span>
+      <span class="particle p7"></span>
+      <span class="particle p8"></span>
+    </div>
+    <!-- Orb glows -->
+    <div class="hero-orb orb-green" aria-hidden="true"></div>
+    <div class="hero-orb orb-gold" aria-hidden="true"></div>
+    <div class="container hero-grid">
+
+      <div class="hero-content reveal">
+        <h1 class="hero-title-main">AAS TÍCH SẢN</h1>
+        <div class="hero-tagline">Tích sản mỗi ngày, kiến tạo tương lai!</div>
+        <p class="hero-sub">Đầu tư định kỳ cùng danh mục được đội ngũ chuyên gia thiết kế dành riêng cho bạn!</p>
+        <div class="hero-btns">
+          <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" target="_blank" rel="noopener">Tích sản ngay</a>
+        </div>
+        <!-- Animated stats row -->
+        <div class="hero-stats-row">
+          <div class="hstat">
+            <div class="hstat-val" data-count="17">0<span>%</span></div>
+            <div class="hstat-lbl">Lợi suất/năm</div>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <div class="hstat-val" data-count="5">0<span> gói</span></div>
+            <div class="hstat-lbl">Danh mục</div>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <div class="hstat-val" data-count="3">0<span> lớp</span></div>
+            <div class="hstat-lbl">Quản trị AI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media-wrapper reveal">
+        <div class="hero-image-card">
+          <img src="images/aas_hero_expert.jpg" alt="Chuyên gia AAS hỗ trợ tích sản trên ứng dụng Smart Invest">
+        </div>
+        <div class="hero-float-badge badge-top">
+          <div>
+            <div class="badge-val">+17%/năm</div>
+            <div class="badge-lbl">Lợi suất kỳ vọng tối đa</div>
+          </div>
+        </div>
+        <div class="hero-float-badge badge-bottom">
+          <div>
+            <div class="badge-val">03 Lớp</div>
+            <div class="badge-lbl">Quản trị định lượng & AI</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 2 — GIẢI PHÁP & 4 TRỤ CỘT
+       ===================================================== -->
+  <section class="section-pad" id="gioi-thieu">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">GIẢI PHÁP ĐẦU TƯ DÀI HẠN</div>
+        <h2 class="section-title">Xây dựng tài sản một cách bài bản<br>từ hôm nay với <span>AAS Tích sản</span></h2>
+        <p class="section-sub">Giải pháp đầu tư tích sản định kỳ, được cá nhân hóa theo mục tiêu và khẩu vị rủi ro của từng khách hàng. Phân bổ vốn dài hạn, duy trì kỷ luật tích sản, tận dụng sức mạnh lãi kép để gia tăng giá trị tài sản bền vững.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card glass-card-light spot-card reveal">
+          <div class="pillar-number-tag">Trụ cột 01</div>
+          <h3 class="pillar-title">Tích sản kỷ luật</h3>
+          <p class="pillar-desc">Hình thành thói quen đầu tư đều đặn theo kế hoạch, loại bỏ rào cản tâm lý từ sóng gió ngắn hạn.</p>
+        </div>
+        <div class="pillar-card glass-card-light spot-card reveal">
+          <div class="pillar-number-tag">Trụ cột 02</div>
+          <h3 class="pillar-title">Sức mạnh lãi kép</h3>
+          <p class="pillar-desc">Tài sản tăng bằng lần từ cả vốn gốc và lợi nhuận tích lũy được tái đầu tư tự động.</p>
+        </div>
+        <div class="pillar-card glass-card-light spot-card reveal">
+          <div class="pillar-number-tag">Trụ cột 03</div>
+          <h3 class="pillar-title">Cá nhân hóa</h3>
+          <p class="pillar-desc">Danh mục được thiết kế chuyên biệt theo mục tiêu tài chính & khẩu vị rủi ro cá nhân.</p>
+        </div>
+        <div class="pillar-card glass-card-light spot-card reveal">
+          <div class="pillar-number-tag">Trụ cột 04</div>
+          <h3 class="pillar-title">Đầu tư theo mục tiêu</h3>
+          <p class="pillar-desc">Đồng hành cùng từng cột mốc quan trọng: mua nhà, giáo dục con cái, hưu trí an nhàn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 3 — ĐỐI TƯỢNG KHÁCH HÀNG
+       ===================================================== -->
+  <section class="section-pad on-dark" id="doi-tuong">
+    <div class="glow-layer"></div>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">ĐỐI TƯỢNG PHÙ HỢP</div>
+        <h2 class="section-title">AAS Tích sản <span>dành cho ai?</span></h2>
+        <p class="section-sub">Giải pháp được thiết kế tối ưu cho nhiều nhóm nhà đầu tư, cùng chung mục tiêu gia tăng tài sản bền vững.</p>
+      </div>
+
+      <!-- Animated KPI bar -->
+      <div class="kpi-bar reveal">
+        <div class="kpi-item">
+          <div class="kpi-val" data-count="10000">0<span>+</span></div>
+          <div class="kpi-lbl">Nhà đầu tư tin tưởng</div>
+          <div class="kpi-progress"><div class="kpi-fill" style="--w:85%"></div></div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" data-count="5">0<span> tỷ+</span></div>
+          <div class="kpi-lbl">Tài sản quản lý (VND)</div>
+          <div class="kpi-progress"><div class="kpi-fill" style="--w:70%"></div></div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" data-count="17">0<span>%</span></div>
+          <div class="kpi-lbl">Lợi suất kỳ vọng cao nhất</div>
+          <div class="kpi-progress"><div class="kpi-fill" style="--w:100%"></div></div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" data-count="6">0<span> bước</span></div>
+          <div class="kpi-lbl">Quy trình chuyên nghiệp</div>
+          <div class="kpi-progress"><div class="kpi-fill" style="--w:60%"></div></div>
+        </div>
+      </div>
+
+      <div class="audience-grid">
+        <div class="glass-card audience-card spot-card reveal">
+          <div class="audience-num">01</div>
+          <div class="audience-body">
+            <h3>Nhà đầu tư hướng đến tăng trưởng bền vững</h3>
+            <p>Mong muốn xây dựng và gia tăng tài sản dài hạn, không chạy theo biến động ngắn hạn đầy rủi ro.</p>
+          </div>
+        </div>
+        <div class="glass-card audience-card spot-card reveal">
+          <div class="audience-num">02</div>
+          <div class="audience-body">
+            <h3>Người bắt đầu tích sản từ vốn nhỏ</h3>
+            <p>Muốn tích lũy đều đặn từng khoản tiền nhỏ theo kỷ luật để tạo dựng nền tảng tài chính vững chắc.</p>
+          </div>
+        </div>
+        <div class="glass-card audience-card spot-card reveal">
+          <div class="audience-num">03</div>
+          <div class="audience-body">
+            <h3>Người xây dựng kế hoạch tài chính gia đình</h3>
+            <p>Chuẩn bị nguồn lực dài hạn cho các cột mốc quan trọng: mua nhà, giáo dục con, quỹ hưu trí.</p>
+          </div>
+        </div>
+        <div class="glass-card audience-card spot-card reveal">
+          <div class="audience-num">04</div>
+          <div class="audience-body">
+            <h3>Người bận rộn, không có thời gian theo dõi thị trường</h3>
+            <p>Tìm kiếm giải pháp tích sản bài bản, được quản lý và theo sát bởi đội ngũ chuyên gia phân tích.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 4 — ƯU ĐIỂM VƯỢT TRỘI
+       ===================================================== -->
+  <section class="section-pad" id="uu-diem">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">ƯU ĐIỂM VƯỢT TRỘI</div>
+        <h2 class="section-title">Vì sao nhà đầu tư nên chọn <span>AAS Tích sản?</span></h2>
+        <p class="section-sub">Sự kết hợp giữa công nghệ định lượng tiên tiến, kinh nghiệm chuyên gia và kỷ luật quản trị rủi ro hàng đầu.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card glass-card-light spot-card reveal">
+          <div class="why-header"><h3>May đo danh mục tài sản theo nhu cầu</h3></div>
+          <p>Danh mục được thiết kế riêng theo mục tiêu và khẩu vị rủi ro của từng khách hàng, dựa trên mô hình đầu tư định lượng tiên tiến tối ưu cho thị trường Việt Nam, kết hợp AI và kinh nghiệm đội ngũ chuyên gia.</p>
+        </div>
+        <div class="why-card glass-card-light spot-card reveal">
+          <div class="why-header"><h3>Bảo vệ tài sản trước mọi biến động</h3></div>
+          <p>Áp dụng chuẩn mực quản trị rủi ro quốc tế, kết hợp mô hình định lượng chuyên biệt trong phân bổ tài sản và tái cân bằng định kỳ, bảo vệ và tối ưu tăng trưởng bền vững trong mọi điều kiện thị trường.</p>
+        </div>
+        <div class="why-card glass-card-light spot-card reveal">
+          <div class="why-header"><h3>Thiết lập tầm nhìn dài hạn với kỷ luật đầu tư</h3></div>
+          <p>Triết lý tích sản dài hạn, hệ thống tự động theo dõi và nhắc nhở định kỳ, giúp nhà đầu tư duy trì kỷ luật và tận dụng tối đa sức mạnh lãi kép để gia tăng giá trị tài sản.</p>
+        </div>
+        <div class="why-card glass-card-light spot-card reveal">
+          <div class="why-header"><h3>Theo dõi tài sản 24/7</h3></div>
+          <p>Hiệu quả danh mục được cập nhật qua hệ thống báo cáo trực quan và minh bạch trên ứng dụng Smart Invest, giúp khách hàng chủ động theo dõi biến động tài sản mọi lúc mọi nơi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 5 & 6 — 03 LỚP QUẢN TRỊ
+       ===================================================== -->
+  <section class="section-pad on-dark" id="phuong-phap">
+    <div class="glow-layer"></div>
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">PHƯƠNG PHÁP CHUYÊN BIỆT</div>
+        <h2 class="section-title">03 Lớp Quản Trị — <span>Một Mục Tiêu Tăng Trưởng Bền Vững</span></h2>
+        <p class="section-sub">Phương pháp đầu tư được nghiên cứu & phát triển dựa trên các mô hình định lượng tiên tiến, kết hợp AI và kinh nghiệm của đội ngũ chuyên gia AAS.</p>
+      </div>
+
+      <!-- Animated flow diagram -->
+      <div class="layer-flow-diagram reveal">
+        <div class="lflow-node">
+          <div class="lflow-icon">📊</div>
+          <div class="lflow-label">Dữ liệu Vĩ mô<br><small>Macro & Market</small></div>
+        </div>
+        <div class="lflow-arrow"><span></span><span></span><span></span></div>
+        <div class="lflow-node highlight">
+          <div class="lflow-icon">🧠</div>
+          <div class="lflow-label">Mô hình AI<br><small>Quant Engine</small></div>
+        </div>
+        <div class="lflow-arrow"><span></span><span></span><span></span></div>
+        <div class="lflow-node">
+          <div class="lflow-icon">📈</div>
+          <div class="lflow-label">Danh mục<br><small>Tối ưu hoá</small></div>
+        </div>
+        <div class="lflow-arrow"><span></span><span></span><span></span></div>
+        <div class="lflow-node gold">
+          <div class="lflow-icon">💰</div>
+          <div class="lflow-label">Tài sản<br><small>Tăng trưởng</small></div>
+        </div>
+      </div>
+
+      <div class="method-grid">
+        <div class="glass-card method-card spot-card reveal">
+          <span class="method-tag">Lớp 01</span>
+          <h3 class="method-title">Phân bổ chiến lược</h3>
+          <div class="method-code">Strategic Asset Allocation (SAA)</div>
+          <p class="method-desc">Xây dựng cấu trúc danh mục dài hạn dựa trên dự báo kinh tế vĩ mô, mục tiêu cá nhân và khẩu vị rủi ro của từng khách hàng.</p>
+        </div>
+        <div class="glass-card method-card spot-card reveal">
+          <span class="method-tag">Lớp 02</span>
+          <h3 class="method-title">Phân bổ chiến thuật</h3>
+          <div class="method-code">Tactical Asset Allocation (TAA)</div>
+          <p class="method-desc">Chủ động điều chỉnh tỷ trọng danh mục theo diễn biến thị trường, tối ưu hiệu suất sinh lời từ biến động trong ngắn và trung hạn.</p>
+        </div>
+        <div class="glass-card method-card spot-card reveal">
+          <span class="method-tag">Lớp 03</span>
+          <h3 class="method-title">Phân bổ chuyên sâu</h3>
+          <div class="method-code">Asset Allocation Analytics (AAA)</div>
+          <p class="method-desc">Ứng dụng mô hình định lượng tiên tiến và hệ thống chấm điểm độc quyền từ Trung tâm Phân tích AAS, lựa chọn những tài sản chất lượng nhất.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 7 — 5 DANH MỤC TIÊU CHUẨN
+       ===================================================== -->
+  <section class="section-pad" id="danh-muc">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">DANH MỤC ĐẦU TƯ</div>
+        <h2 class="section-title">Lựa chọn danh mục <span>phù hợp với bạn</span></h2>
+        <p class="section-sub">AAS Tích sản mang đến 5 danh mục tiêu chuẩn được thiết kế cá nhân hóa với đa dạng mục tiêu và khẩu vị rủi ro của khách hàng.</p>
+      </div>
+
+      <div class="tier-pills reveal">
+        <button class="tier-pill active" data-tier="uom-mam">Ươm Mầm</button>
+        <button class="tier-pill" data-tier="an-nhan">An Nhàn</button>
+        <button class="tier-pill" data-tier="can-bang">Cân Bằng</button>
+        <button class="tier-pill" data-tier="tang-truong">Tăng Trưởng</button>
+        <button class="tier-pill" data-tier="but-pha">Bứt Phá</button>
+      </div>
+
+      <div class="tier-panels-wrap reveal">
+
+        <div class="tier-panel active" data-panel="uom-mam">
+          <div class="tier-info">
+            <h3>Danh mục Ươm Mầm</h3>
+            <div class="tier-return-badge">Lợi suất kỳ vọng: 10%/năm</div>
+            <p class="tier-desc">Dành cho nhà đầu tư bắt đầu với vốn nhỏ, muốn xây dựng kỷ luật tích lũy định kỳ với độ an toàn cao.</p>
+            <div class="asset-alloc-list">
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#10B981;"></span>Cổ phiếu Bluechip VN30</div><div class="asset-pct">50%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#B8813F;"></span>Trái phiếu & Quỹ mở</div><div class="asset-pct">40%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#22C55E;"></span>Tiền gửi & Tiền mặt</div><div class="asset-pct">10%</div></div>
+            </div>
+            <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:24px;" target="_blank" rel="noopener">Chọn Gói Ươm Mầm</a>
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#E8E0D6" stroke-width="18"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#10B981" stroke-width="18" data-len="219.91" data-offset="0"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#B8813F" stroke-width="18" data-len="175.93" data-offset="219.91"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#22C55E" stroke-width="18" data-len="43.98" data-offset="395.84"/></svg>
+            <div class="donut-center-label"><div class="donut-center-lbl">Tăng trưởng</div><div class="donut-center-val">10%</div></div>
+          </div>
+        </div>
+
+        <div class="tier-panel" data-panel="an-nhan">
+          <div class="tier-info">
+            <h3>Danh mục An Nhàn</h3>
+            <div class="tier-return-badge">Lợi suất kỳ vọng: 8%/năm</div>
+            <p class="tier-desc">Dành cho khách hàng ưu tiên bảo toàn vốn, dòng tiền ổn định và thu nhập an toàn dài hạn.</p>
+            <div class="asset-alloc-list">
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#10B981;"></span>Trái phiếu Doanh nghiệp Uy tín</div><div class="asset-pct">60%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#B8813F;"></span>Cổ phiếu Tăng trưởng Cổ tức</div><div class="asset-pct">30%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#22C55E;"></span>Thanh khoản Linh hoạt</div><div class="asset-pct">10%</div></div>
+            </div>
+            <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:24px;" target="_blank" rel="noopener">Chọn Gói An Nhàn</a>
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#E8E0D6" stroke-width="18"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#10B981" stroke-width="18" data-len="263.89" data-offset="0"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#B8813F" stroke-width="18" data-len="131.95" data-offset="263.89"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#22C55E" stroke-width="18" data-len="43.98" data-offset="395.84"/></svg>
+            <div class="donut-center-label"><div class="donut-center-lbl">Tăng trưởng</div><div class="donut-center-val">8%</div></div>
+          </div>
+        </div>
+
+        <div class="tier-panel" data-panel="can-bang">
+          <div class="tier-info">
+            <h3>Danh mục Cân Bằng</h3>
+            <div class="tier-return-badge">Lợi suất kỳ vọng: 11%/năm</div>
+            <p class="tier-desc">Kết hợp hoàn hảo giữa tăng trưởng tài sản và kiểm soát rủi ro cho kế hoạch trung - dài hạn.</p>
+            <div class="asset-alloc-list">
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#10B981;"></span>Cổ phiếu Tăng trưởng Ngành</div><div class="asset-pct">55%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#B8813F;"></span>Trái phiếu & Quỹ Định lượng</div><div class="asset-pct">35%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#22C55E;"></span>Tiền mặt dự phòng</div><div class="asset-pct">10%</div></div>
+            </div>
+            <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:24px;" target="_blank" rel="noopener">Chọn Gói Cân Bằng</a>
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#E8E0D6" stroke-width="18"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#10B981" stroke-width="18" data-len="241.90" data-offset="0"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#B8813F" stroke-width="18" data-len="153.94" data-offset="241.90"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#22C55E" stroke-width="18" data-len="43.98" data-offset="395.84"/></svg>
+            <div class="donut-center-label"><div class="donut-center-lbl">Tăng trưởng</div><div class="donut-center-val">11%</div></div>
+          </div>
+        </div>
+
+        <div class="tier-panel" data-panel="tang-truong">
+          <div class="tier-info">
+            <h3>Danh mục Tăng Trưởng</h3>
+            <div class="tier-return-badge">Lợi suất kỳ vọng: 14%/năm</div>
+            <p class="tier-desc">Tập trung tối đa hóa hiệu suất sinh lời bằng cách phân bổ vào các siêu cổ phiếu dẫn dắt thị trường.</p>
+            <div class="asset-alloc-list">
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#10B981;"></span>Cổ phiếu Định lượng AI</div><div class="asset-pct">75%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#B8813F;"></span>Trái phiếu Doanh nghiệp</div><div class="asset-pct">20%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#22C55E;"></span>Tiền mặt linh hoạt</div><div class="asset-pct">5%</div></div>
+            </div>
+            <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:24px;" target="_blank" rel="noopener">Chọn Gói Tăng Trưởng</a>
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#E8E0D6" stroke-width="18"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#10B981" stroke-width="18" data-len="329.86" data-offset="0"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#B8813F" stroke-width="18" data-len="87.96" data-offset="329.86"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#22C55E" stroke-width="18" data-len="22.00" data-offset="417.82"/></svg>
+            <div class="donut-center-label"><div class="donut-center-lbl">Tăng trưởng</div><div class="donut-center-val">14%</div></div>
+          </div>
+        </div>
+
+        <div class="tier-panel" data-panel="but-pha">
+          <div class="tier-info">
+            <h3>Danh mục Bứt Phá</h3>
+            <div class="tier-return-badge">Lợi suất kỳ vọng: 17%/năm</div>
+            <p class="tier-desc">Danh mục chủ động vượt trội dành cho nhà đầu tư kỳ vọng lợi nhuận đột phá, chấp nhận rủi ro cao hơn.</p>
+            <div class="asset-alloc-list">
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#10B981;"></span>Cổ phiếu Đột phá Sinh lời</div><div class="asset-pct">85%</div></div>
+              <div class="asset-item"><div class="asset-name"><span class="asset-color-dot" style="background:#B8813F;"></span>Cổ phiếu Tiềm năng đặc biệt</div><div class="asset-pct">15%</div></div>
+            </div>
+            <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="margin-top:24px;" target="_blank" rel="noopener">Chọn Gói Bứt Phá</a>
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#E8E0D6" stroke-width="18"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#10B981" stroke-width="18" data-len="373.84" data-offset="0"/><circle class="donut-seg" cx="80" cy="80" r="70" fill="none" stroke="#B8813F" stroke-width="18" data-len="65.98" data-offset="373.84"/></svg>
+            <div class="donut-center-label"><div class="donut-center-lbl">Tăng trưởng</div><div class="donut-center-val">17%</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 8 — CALCULATOR
+       ===================================================== -->
+  <section class="section-pad on-dark" id="cong-cu">
+    <div class="glow-layer"></div>
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">DỰ TÍNH TÍCH SẢN</div>
+        <h2 class="section-title">Chạm tới mục tiêu tài chính<br><span>với kỷ luật đầu tư</span></h2>
+        <p class="section-sub">Ước tính số vốn cần tích sản định kỳ mỗi tháng để đạt mục tiêu tài chính, dựa trên lợi suất kỳ vọng và thời gian đầu tư.</p>
+      </div>
+
+      <div class="calc-wrapper reveal">
+        <div class="calc-controls">
+          <div class="form-label">Mục Tiêu Tài Chính:</div>
+          <div class="goal-pills">
+            <button class="goal-btn active" data-goal="nhaxuong">Mua nhà</button>
+            <button class="goal-btn" data-goal="muaxe">Mua xe</button>
+            <button class="goal-btn" data-goal="giaoduc">Giáo dục con</button>
+            <button class="goal-btn" data-goal="huutri">Hưu trí</button>
+            <button class="goal-btn" data-goal="tudotc">Tự do tài chính</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inpTarget">Số tiền mục tiêu (đ):</label>
+            <input type="text" id="inpTarget" class="form-input" value="5.000.000.000 đ">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inpInitial">Vốn hiện có ban đầu (đ):</label>
+            <input type="text" id="inpInitial" class="form-input" value="500.000.000 đ">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inpReturn">Danh mục & Lợi suất kỳ vọng:</label>
+            <select id="inpReturn" class="form-input">
+              <option value="10">Ươm mầm (10%/năm)</option>
+              <option value="8">An Nhàn (8%/năm)</option>
+              <option value="11">Cân Bằng (11%/năm)</option>
+              <option value="14" selected>Tăng Trưởng (14%/năm)</option>
+              <option value="17">Bứt Phá (17%/năm)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <label class="form-label">Thời gian đầu tư:</label>
+              <span id="inpYears" style="color:var(--brand-gold-light);font-weight:700;">10 năm</span>
+            </div>
+            <input type="range" id="sliderYears" class="range-slider" min="1" max="30" value="10">
+          </div>
+        </div>
+
+        <div class="result-card spot-card">
+          <div>
+            <div class="result-main-lbl">Vốn Cần Tích Sản Hàng Tháng</div>
+            <div class="result-main-val" id="resMonthly">0 đ</div>
+            <p style="font-size:0.85rem;color:var(--mist-text);margin-bottom:20px;">Số tiền nộp định kỳ đề xuất để hoàn thành đúng thời hạn mục tiêu.</p>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line-dark);padding-top:16px;margin-bottom:12px;">
+              <span style="font-size:0.9rem;color:var(--mist-text);">Tổng nộp gốc dự kiến:</span>
+              <span id="resTotal" style="font-weight:700;color:var(--paper);">0 đ</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+              <span style="font-size:0.9rem;color:var(--mist-text);">Lợi nhuận lãi kép dự kiến:</span>
+              <span id="resGain" style="font-weight:700;color:var(--brand-green-light);">0 đ</span>
+            </div>
+          </div>
+          <div class="calc-chart-wrap">
+            <svg id="calcChart" viewBox="0 0 480 180" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <path id="calcArea" fill="url(#areaGrad)"/>
+              <path id="calcPrincipalLine" fill="none" stroke="#C8955A" stroke-width="2" stroke-dasharray="4 4"/>
+              <path id="calcGrowthLine" fill="none" stroke="#34D399" stroke-width="3.5"/>
+            </svg>
+          </div>
+          <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="width:100%;margin-top:4px;" target="_blank" rel="noopener">Tích sản ngay</a>
+          <p style="font-size:0.75rem;color:var(--mist-text);opacity:0.8;text-align:center;margin-top:8px;">*Thông tin chỉ mang tính tham khảo, không phải cam kết lợi nhuận.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 9 — BẢNG LÃI KÉP
+       ===================================================== -->
+  <section class="section-pad" id="lai-kep">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">TĂNG TRƯỞNG DÀI HẠN</div>
+        <h2 class="section-title">Tài sản tăng trưởng vượt trội<br>nhờ sức mạnh của <span>Lãi kép</span></h2>
+        <p class="section-sub">Duy trì kỷ luật đầu tư đều đặn trong dài hạn, AAS Tích sản giúp khoản tiền tích lũy tăng trưởng mạnh mẽ theo thời gian.</p>
+      </div>
+      <div class="table-responsive reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Danh mục</th>
+              <th>Vốn khởi đầu</th>
+              <th>Lợi suất</th>
+              <th>Sau 5 năm</th>
+              <th>Sau 10 năm</th>
+              <th>Sau 15 năm</th>
+              <th>Sau 20 năm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="pkg-badge">Ươm Mầm (2tr/tháng)</td><td>10.000.000đ</td><td>10%</td><td>169.227.560đ</td><td>425.665.138đ</td><td>838.660.422đ</td><td>1.503.793.456đ</td></tr>
+            <tr><td class="pkg-badge">An Nhàn (10tr/tháng)</td><td>500.000.000đ</td><td>8%</td><td>1.464.110.542đ</td><td>2.880.705.231đ</td><td>4.962.147.580đ</td><td>8.020.469.264đ</td></tr>
+            <tr><td class="pkg-badge">Cân Bằng (10tr/tháng)</td><td>500.000.000đ</td><td>11%</td><td>1.626.833.613đ</td><td>3.525.613.782đ</td><td>6.725.168.791đ</td><td>12.116.605.050đ</td></tr>
+            <tr><td class="pkg-badge">Tăng Trưởng (10tr/tháng)</td><td>500.000.000đ</td><td>14%</td><td>1.805.613.805đ</td><td>4.319.461.664đ</td><td>9.159.660.991đ</td><td>18.479.051.355đ</td></tr>
+            <tr><td class="pkg-badge">Bứt Phá (10tr/tháng)</td><td>500.000.000đ</td><td>17%</td><td>2.001.678.267đ</td><td>5.294.029.833đ</td><td>12.512.339.558đ</td><td>28.338.108.535đ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 10 — QUY TRÌNH 6 BƯỚC
+       ===================================================== -->
+  <section class="section-pad on-dark" id="quy-trinh">
+    <div class="glow-layer"></div>
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">QUY TRÌNH CHUYÊN NGHIỆP</div>
+        <h2 class="section-title">Hành trình tích sản <span>cùng AAS</span></h2>
+        <p class="section-sub">AAS đồng hành tích sản cùng bạn thông qua quy trình 6 bước chuyên nghiệp, bài bản:</p>
+      </div>
+      <div class="steps-timeline reveal">
+        <div class="steps-progress-track"><div class="steps-progress-fill"></div></div>
+        <div class="steps-grid">
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Thấu hiểu mục tiêu</h3>
+            <p class="step-desc">Trao đổi về mục tiêu tài chính, khẩu vị rủi ro và kỳ vọng của khách hàng.</p>
+          </div>
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Xây dựng chiến lược</h3>
+            <p class="step-desc">Đề xuất danh mục tài sản chiến lược phù hợp nhất với mục tiêu tài chính cá nhân.</p>
+          </div>
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Triển khai đầu tư</h3>
+            <p class="step-desc">Thực hiện đầu tư định kỳ theo danh mục đã chọn trên ứng dụng Smart Invest.</p>
+          </div>
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Theo dõi</h3>
+            <p class="step-desc">Giám sát, theo dõi hiệu quả danh mục và diễn biến thị trường 24/7 minh bạch.</p>
+          </div>
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">05</div>
+            <h3 class="step-title">Tái cân bằng</h3>
+            <p class="step-desc">Điều chỉnh danh mục khi cần thiết, tối ưu hóa tăng trưởng và kiểm soát rủi ro.</p>
+          </div>
+          <div class="glass-card step-card spot-card">
+            <div class="step-num">06</div>
+            <h3 class="step-title">Đồng hành dài hạn</h3>
+            <p class="step-desc">Định kỳ rà soát, cập nhật và điều chỉnh chiến lược theo từng giai đoạn cuộc sống.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SECTION 11 — FAQ & FORM LIÊN HỆ
+       ===================================================== -->
+  <section class="section-pad" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">HỎI ĐÁP & LIÊN HỆ</div>
+        <h2 class="section-title">Tìm hiểu thêm về <span>AAS Tích sản</span></h2>
+        <p class="section-sub">Giải đáp các câu hỏi thường gặp và kết nối trực tiếp với chuyên gia tư vấn của chúng tôi.</p>
+      </div>
+
+      <div class="faq-contact-grid">
+        <div class="accordion-list reveal">
+          <div class="accordion-item active">
+            <button class="accordion-header"><span>AAS Tích sản là gì?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">AAS Tích sản là giải pháp đầu tư tích lũy tài sản định kỳ được nghiên cứu bởi Công ty Cổ phần Chứng khoán Smart Invest (AAS). Giải pháp giúp nhà đầu tư xây dựng thói quen tích lũy dài hạn, tận dụng sức mạnh lãi kép và phân bổ vốn tối ưu.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header"><span>Danh mục AAS Tích sản được quản lý bởi ai?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">Danh mục được xây dựng và quản lý bởi Trung tâm Phân tích AAS kết hợp cùng các mô hình toán định lượng tiên tiến và công nghệ AI sàng lọc cổ phiếu hàng đầu.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header"><span>Tôi có thể theo dõi danh mục tài sản qua đâu?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">Khách hàng có thể theo dõi hiệu quả đầu tư, biến động danh mục và báo cáo tài sản 24/7 trực tiếp trên ứng dụng giao dịch Smart Invest của AAS.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header"><span>Mỗi tháng tôi phải nộp bao nhiêu tiền để tích sản?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">Bạn có thể bắt đầu tích sản chỉ từ 2.000.000 đ/tháng với gói Ươm Mầm hoặc từ 10.000.000 đ/tháng cho các gói tiêu chuẩn khác tùy khả năng tài chính.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header"><span>Mức sinh lời kỳ vọng là bao nhiêu?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">Mức sinh lời kỳ vọng dao động từ 8%/năm đến 17%/năm tùy thuộc vào gói danh mục đầu tư bạn lựa chọn.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header"><span>Tôi có thể chuyển đổi giữa các gói danh mục không?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-body">Hoàn toàn có thể. Khách hàng có thể chủ động tái phân bổ hoặc chuyển đổi gói danh mục khi mục tiêu tài chính hoặc khẩu vị rủi ro thay đổi theo thời gian.</div>
+          </div>
+        </div>
+
+        <div class="contact-form-card reveal">
+          <h3 style="font-size:1.4rem;font-weight:700;color:var(--ink-text);margin-bottom:8px;">Liên hệ tư vấn</h3>
+          <p style="font-size:0.9rem;color:var(--sage-text);margin-bottom:24px;">Để lại thông tin, đội ngũ chuyên gia của AAS sẽ phản hồi trong thời gian sớm nhất.</p>
+          <form id="contactForm">
+            <input type="text" class="contact-input" placeholder="Tên của bạn" required>
+            <input type="email" class="contact-input" placeholder="Địa chỉ Email" required>
+            <input type="tel" class="contact-input" placeholder="Số điện thoại" required>
+            <textarea class="contact-input" placeholder="Lời nhắn của bạn..."></textarea>
+            <button type="submit" class="btn btn-gold" style="width:100%;">GỬI YÊU CẦU TƯ VẤN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="footer-sec">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom:16px;">
+            <span>AAS <span class="brand-badge">Tích Sản</span></span>
+          </div>
+          <p style="font-size:0.9rem;color:var(--mist-text);max-width:400px;line-height:1.65;">Công ty Cổ phần Chứng khoán Smart Invest (AAS) — Đồng hành cùng nhà đầu tư kiến tạo tài sản bền vững dựa trên công nghệ định lượng tiên tiến & chuyên gia chuyên nghiệp.</p>
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;font-size:0.88rem;color:var(--mist-text);">
+            <span>Tổng đài: <a href="tel:19001811" style="color:var(--brand-gold-light);">1900 1811</a></span>
+            <span>Email: <a href="mailto:trungtamcskh@aas.com.vn" style="color:var(--brand-gold-light);">trungtamcskh@aas.com.vn</a></span>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color:var(--paper);font-size:1rem;font-weight:700;margin-bottom:16px;">Danh Mục Đầu Tư</h4>
+          <ul style="display:flex;flex-direction:column;gap:10px;font-size:0.9rem;color:var(--mist-text);">
+            <li><a href="#danh-muc" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Gói Ươm Mầm</a></li>
+            <li><a href="#danh-muc" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Gói An Nhàn</a></li>
+            <li><a href="#danh-muc" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Gói Cân Bằng</a></li>
+            <li><a href="#danh-muc" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Gói Tăng Trưởng</a></li>
+            <li><a href="#danh-muc" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Gói Bứt Phá</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color:var(--paper);font-size:1rem;font-weight:700;margin-bottom:16px;">Về AAS</h4>
+          <ul style="display:flex;flex-direction:column;gap:10px;font-size:0.9rem;color:var(--mist-text);">
+            <li><a href="https://aas.com.vn/gioi-thieu-aas/" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Thông tin Doanh nghiệp</a></li>
+            <li><a href="https://aas.com.vn/aas-research/" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">AAS Research</a></li>
+            <li><a href="https://aas.com.vn/category/aas-academy/" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">AAS Academy</a></li>
+            <li><a href="https://aas.com.vn/co-hoi-nghe-nghiep/" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Cơ hội Nghề nghiệp</a></li>
+            <li><a href="#faq" style="transition:color 0.2s;" onmouseover="this.style.color='var(--brand-gold-light)'" onmouseout="this.style.color='var(--mist-text)'">Liên hệ & Hỗ trợ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Smart Invest Securities (AAS). All rights reserved.</div>
+        <div style="display:flex;gap:20px;font-size:0.88rem;">
+          <a href="https://smarteb.aasp.vn/mo-tai-khoan" style="color:var(--brand-gold-light);" target="_blank" rel="noopener">Mở Tài Khoản</a>
+          <a href="#faq" style="color:var(--mist-text);">Hỏi Đáp</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile CTA Bar -->
+  <div class="mobile-sticky-cta">
+    <div style="display:flex;flex-direction:column;">
+      <span style="font-size:0.75rem;color:var(--brand-gold-light);font-weight:700;">AAS TÍCH SẢN</span>
+      <span style="font-size:0.85rem;color:var(--paper);font-weight:600;">Lãi kép từ 8–17%/năm</span>
+    </div>
+    <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="padding:10px 20px;font-size:0.88rem;" target="_blank" rel="noopener">Tích sản ngay</a>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
