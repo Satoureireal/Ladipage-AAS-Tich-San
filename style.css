@@ -1092,86 +1092,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 280px;
 }
 
 .donut-wrap svg {
-  /* Highcharts will manage size */
-  overflow: visible; /* For 3D effect */
+  transform: rotate(-90deg);
+  width: 240px;
+  height: 240px;
 }
 
 .donut-center-label {
-  /* Hide the old label, Highcharts will draw it */
-  display: none;
-}
-
-/* Original 2D donut from index.html */
-.donut-wrap > svg:not(.portfolio2d-chart):not(.donut3d-chart) {
-  width: min(100%, 300px);
-  height: auto;
-  transform: rotate(-90deg);
-  filter: drop-shadow(0 10px 18px rgba(2, 61, 40, .12));
-}
-.donut-wrap > svg .donut-seg {
-  opacity: 0;
-  transition: opacity .35s ease, stroke-dashoffset 1s var(--ease);
-}
-.donut-wrap > svg.is-drawn .donut-seg { opacity: 1; }
-.donut-wrap .donut-center-label {
-  display: flex;
   position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -50%);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  pointer-events: none;
 }
-.donut-center-lbl { color: var(--sage-text); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
-.donut-center-val { color: var(--brand-green); font-size: 1.9rem; line-height: 1.15; font-weight: 800; }
 
-/* Animated 3D portfolio donut (native SVG/CSS) */
-.donut3d-scene { position:relative; width:min(100%,360px); aspect-ratio:1; display:grid; place-items:center; perspective:900px; }
-.donut3d-float { position:relative; width:88%; aspect-ratio:1; transform-style:preserve-3d; animation:donut3d-float 4.5s ease-in-out infinite; }
-.donut3d-chart { width:100%; height:100%; overflow:visible; transform:rotateX(57deg) rotateZ(-90deg); transform-origin:center; transform-style:preserve-3d; }
-.donut3d-canvas { width:100%; height:100%; display:block; filter:drop-shadow(0 24px 16px rgba(2,61,40,.28)); }
-.donut3d-webgl .donut3d-float { width:100%; }
-.donut3d-webgl .donut3d-center { width:27%; transform:translate(-50%,-33%); background:radial-gradient(circle at 40% 28%,#fff,#edf8f2 68%,#cfe6da); box-shadow:0 10px 24px rgba(2,61,40,.2),inset 0 1px 2px #fff; }
-.donut3d-render .donut3d-float { width:100%; }
-.donut3d-image { width:100%; height:100%; display:block; object-fit:contain; border-radius:50%; mix-blend-mode:multiply; }
-.donut3d-render .donut3d-center { width:23%; transform:translate(-50%,-23%); background:rgba(255,255,255,.94); box-shadow:0 8px 22px rgba(2,61,40,.2),inset 0 1px 2px #fff; z-index:2; }
-.donut3d-render::after { content:''; position:absolute; inset:13% 8% 9%; border-radius:50%; background:radial-gradient(ellipse at center,transparent 52%,rgba(2,61,40,.08) 100%); filter:blur(12px); z-index:-1; }
+.donut-center-lbl {
+  font-size: 0.8rem;
+  color: var(--sage-text);
+  text-transform: uppercase;
+  font-weight: 700;
+}
 
-/* Modern luxury 2D portfolio chart */
-.portfolio2d { position:relative; width:min(100%,340px); aspect-ratio:1; display:grid; place-items:center; }
-.portfolio2d-chart { width:100%; height:100%; overflow:visible; transform:rotate(-90deg); }
-.portfolio2d-track,.portfolio2d .donut3d-segment { fill:none; stroke-width:30; }
-.portfolio2d-track { stroke:#edf1ee; }
-.portfolio2d .donut3d-segment { opacity:1; stroke-linecap:round; animation:portfolio2d-draw 1s cubic-bezier(.22,.8,.25,1) both; animation-delay:var(--segment-delay); }
-.portfolio2d-inner-ring { fill:#fff; stroke:rgba(184,129,63,.2); stroke-width:1; }
-.portfolio2d-center { position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); width:38%; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(145deg,#fff,#f8faf8); box-shadow:0 10px 30px rgba(2,61,40,.1),inset 0 0 0 1px rgba(255,255,255,.9); text-align:center; }
-.portfolio2d-center span { color:var(--sage-text); font-size:.69rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-.portfolio2d-center strong { color:var(--brand-green); font-size:2rem; line-height:1.05; }
-.portfolio2d-center small { color:#b8813f; font-size:.68rem; font-weight:700; }
-.portfolio2d-halo { position:absolute; width:86%; height:86%; border-radius:50%; border:1px solid rgba(184,129,63,.14); box-shadow:0 0 0 10px rgba(16,185,129,.025); }
-@keyframes portfolio2d-draw { from { opacity:0; stroke-dashoffset:440; } to { opacity:1; } }
-@media (max-width:768px) { .portfolio2d { width:min(88vw,320px); } }
-.donut3d-track,.donut3d-segment,.donut3d-depth circle { fill:none; stroke-width:34; }
-.donut3d-track { stroke:#e7eee9; }
-.donut3d-depth circle { stroke:#075b43; opacity:.52; }
-.donut3d-segment { stroke-linecap:butt; opacity:0; animation:donut3d-draw 1.15s cubic-bezier(.22,.8,.25,1) forwards; animation-delay:var(--segment-delay); transition:filter .25s ease,stroke-width .25s ease; }
-.donut3d-segment:hover { filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,.7)); stroke-width:39; }
-.donut3d-highlight { fill:none; stroke:rgba(255,255,255,.28); stroke-width:3; }
-.donut3d-center { position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-45%); width:42%; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:var(--sage-text); background:radial-gradient(circle at 40% 30%,#fff 0,#f1f8f4 68%,#d6e9df 100%); box-shadow:0 12px 30px rgba(2,61,40,.16),inset 0 1px 2px #fff; border:1px solid rgba(16,185,129,.18); }
-.donut3d-center span { font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
-.donut3d-center strong { color:var(--brand-green); font-size:1.85rem; line-height:1.15; }
-.donut3d-orbit { position:absolute; width:91%; height:30%; border:1px solid rgba(16,185,129,.22); border-radius:50%; transform:rotate(-8deg); z-index:-1; }
-.donut3d-orbit::after { content:''; position:absolute; width:8px; height:8px; border-radius:50%; background:var(--brand-gold); box-shadow:0 0 15px var(--brand-gold); animation:donut3d-orbit 4s linear infinite; }
-@keyframes donut3d-draw { from { opacity:0; stroke-dashoffset:440; } to { opacity:1; } }
-@keyframes donut3d-float { 0%,100% { transform:translateY(3px) rotateY(-2deg); } 50% { transform:translateY(-9px) rotateY(3deg); } }
-@keyframes donut3d-orbit { 0% { left:4%; top:48%; } 50% { left:94%; top:48%; } 100% { left:4%; top:48%; } }
-@media (prefers-reduced-motion:reduce) { .donut3d-float,.donut3d-orbit::after { animation:none; } .donut3d-segment { animation-duration:.01ms; } }
+.donut-center-val {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--brand-green);
+}
 
 /* ============================================================
    SECTION 8 — INTERACTIVE INVESTMENT CALCULATOR

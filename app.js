@@ -123,184 +123,31 @@
     });
   }
 
-  // --- 3D DONUT CHART ---
-  function create3dDonut(panel) {
-    const container = panel.querySelector('.donut-wrap');
-    if (!container || !window.Highcharts) {
-      console.warn('Highcharts or container not found for donut chart.');
-      return;
-    }
+  // --- DONUT CHART ANIMATION ---
+  const DONUT_CIRCUMFERENCE = 439.82;
 
-    // Clear previous chart/SVG
-    container.innerHTML = '';
-
-    const assetItems = panel.querySelectorAll('.asset-item');
-    const chartData = [];
-
-    assetItems.forEach(item => {
-        const name = item.querySelector('.asset-name')?.innerText.trim();
-        const pctText = item.querySelector('.asset-pct')?.innerText.trim();
-        const pct = parseFloat(pctText.replace('%', ''));
-        const colorDot = item.querySelector('.asset-color-dot');
-        const color = colorDot ? window.getComputedStyle(colorDot).backgroundColor : null;
-
-        if (name && !isNaN(pct)) {
-            chartData.push({
-                name: name,
-                y: pct,
-                color: color
-            });
-        }
+  function animateDonut(panel) {
+    const segs = panel?.querySelectorAll('.donut-seg');
+    if (!segs || !segs.length) return;
+    // Reset animation
+    segs.forEach(seg => {
+      seg.setAttribute('stroke-dasharray', `0 ${DONUT_CIRCUMFERENCE}`);
     });
 
-    const centerValEl = panel.querySelector('.donut-center-val');
-    const centerLblEl = panel.querySelector('.donut-center-lbl');
-
-    const titleText = centerLblEl ? centerLblEl.innerText : '';
-    const subtitleText = centerValEl ? centerValEl.innerText : '';
-
-    Highcharts.chart(container, {
-        chart: {
-            type: 'pie',
-            backgroundColor: 'transparent',
-            options3d: {
-                enabled: true,
-                alpha: 45,
-                beta: 0,
-                depth: 35,
-                viewDistance: 25
-            }
-        },
-        title: {
-            text: titleText,
-            align: 'center',
-            verticalAlign: 'middle',
-            y: -15,
-            style: {
-                fontSize: '0.8rem',
-                color: 'var(--sage-text)',
-                textTransform: 'uppercase',
-                fontWeight: '700'
-            }
-        },
-        subtitle: {
-            text: subtitleText,
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 10,
-            style: {
-                fontSize: '1.7rem',
-                fontWeight: '800',
-                color: 'var(--brand-green)'
-            }
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                innerSize: '70%',
-                depth: 35,
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: { enabled: false },
-                showInLegend: false
-            }
-        },
-        series: [{
-            name: 'Phân bổ',
-            data: chartData
-        }],
-        credits: {
-            enabled: false
-        }
-    });
-  }
-
-  // Native animated 3D donut. This intentionally has no third-party dependency.
-  function renderWebGLDonut(canvas, data) {
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: true });
-    if (!gl) return false;
-    const vertexShader = `attribute vec3 p;attribute vec3 n;attribute vec3 c;uniform float spin;uniform float aspect;varying vec3 color;varying float light;void main(){float cs=cos(spin),sn=sin(spin);mat3 rz=mat3(cs,-sn,0.,sn,cs,0.,0.,0.,1.);float t=.94;mat3 rx=mat3(1.,0.,0.,0.,cos(t),-sin(t),0.,sin(t),cos(t));vec3 q=rx*rz*p;q.z-=4.2;vec3 nn=normalize(rx*rz*n);light=.28+.72*max(dot(nn,normalize(vec3(-.35,.65,.7))),0.);color=c;float f=2.15;gl_Position=vec4(q.x*f/aspect,q.y*f,((101.)/(-99.))*q.z-(200./99.),-q.z);}`;
-    const fragmentShader = `precision mediump float;varying vec3 color;varying float light;void main(){gl_FragColor=vec4(color*light,1.);}`;
-    const compile = (type, source) => { const s=gl.createShader(type); gl.shaderSource(s,source); gl.compileShader(s); return s; };
-    const program=gl.createProgram(); gl.attachShader(program,compile(gl.VERTEX_SHADER,vertexShader)); gl.attachShader(program,compile(gl.FRAGMENT_SHADER,fragmentShader)); gl.linkProgram(program); gl.useProgram(program);
-    const positions=[], normals=[], colors=[];
-    const rgb = value => { const m=value.match(/[\d.]+/g)?.map(Number)||[16,185,129]; return m.slice(0,3).map(v=>v/255); };
-    const push=(a,b,c,n,col)=>{ [a,b,c].forEach(v=>positions.push(...v)); for(let i=0;i<3;i++){normals.push(...n);colors.push(...col);} };
-    const outer=1.42, inner=.78, h=.46, steps=44;
-    let angle=-Math.PI/2;
-    data.forEach(item=>{
-      const end=angle+Math.PI*2*item.value/100, col=rgb(item.color), dark=col.map(v=>v*.68);
-      for(let i=0;i<steps;i++){
-        const a=angle+(end-angle)*i/steps,b=angle+(end-angle)*(i+1)/steps;
-        const ot1=[Math.cos(a)*outer,Math.sin(a)*outer,h/2],ot2=[Math.cos(b)*outer,Math.sin(b)*outer,h/2],it1=[Math.cos(a)*inner,Math.sin(a)*inner,h/2],it2=[Math.cos(b)*inner,Math.sin(b)*inner,h/2];
-        const ob1=[ot1[0],ot1[1],-h/2],ob2=[ot2[0],ot2[1],-h/2],ib1=[it1[0],it1[1],-h/2],ib2=[it2[0],it2[1],-h/2];
-        push(ot1,ot2,it2,[0,0,1],col); push(ot1,it2,it1,[0,0,1],col);
-        push(ob2,ob1,ib1,[0,0,-1],dark); push(ob2,ib1,ib2,[0,0,-1],dark);
-        const mid=(a+b)/2; push(ot2,ot1,ob1,[Math.cos(mid),Math.sin(mid),0],col); push(ot2,ob1,ob2,[Math.cos(mid),Math.sin(mid),0],dark);
-        push(it1,it2,ib2,[-Math.cos(mid),-Math.sin(mid),0],dark); push(it1,ib2,ib1,[-Math.cos(mid),-Math.sin(mid),0],dark);
-      }
-      const radial=(a,flip)=>{const o1=[Math.cos(a)*outer,Math.sin(a)*outer,h/2],i1=[Math.cos(a)*inner,Math.sin(a)*inner,h/2],o2=[o1[0],o1[1],-h/2],i2=[i1[0],i1[1],-h/2],n=[-Math.sin(a)*(flip?-1:1),Math.cos(a)*(flip?-1:1),0];push(o1,i1,i2,n,dark);push(o1,i2,o2,n,dark);}; radial(angle,false);radial(end,true);angle=end;
-    });
-    const bind=(name,size,values)=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};
-    bind('p',3,positions);bind('n',3,normals);bind('c',3,colors);
-    const spinLoc=gl.getUniformLocation(program,'spin'),aspectLoc=gl.getUniformLocation(program,'aspect');
-    let start=performance.now(), stopped=false;
-    const draw=now=>{if(stopped||!canvas.isConnected)return;const dpr=Math.min(devicePixelRatio||1,2),w=canvas.clientWidth*dpr,hc=canvas.clientHeight*dpr;if(canvas.width!==w||canvas.height!==hc){canvas.width=w;canvas.height=hc;gl.viewport(0,0,w,hc);}gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.uniform1f(aspectLoc,w/hc);const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;gl.uniform1f(spinLoc,reduced?.18:.18+Math.sin((now-start)/2600)*.16);gl.drawArrays(gl.TRIANGLES,0,positions.length/3);requestAnimationFrame(draw);};
-    requestAnimationFrame(draw); canvas._stopDonut=()=>{stopped=true;}; return true;
-  }
-
-  function createNative3dDonut(panel) {
-    const container = panel.querySelector('.donut-wrap');
-    if (!container) return;
-
-    // Restore and animate the original 2D SVG shipped in index.html.
-    const originalSvg = container.querySelector('svg:not(.portfolio2d-chart):not(.donut3d-chart)');
-    if (originalSvg) {
-      originalSvg.classList.remove('is-drawn');
-      originalSvg.querySelectorAll('.donut-seg').forEach(segment => {
-        const length = Number(segment.dataset.len) || 0;
-        const offset = Number(segment.dataset.offset) || 0;
-        segment.style.setProperty('--seg-length', length);
-        segment.style.setProperty('--seg-offset', -offset);
-        segment.style.strokeDasharray = `${length} ${439.82 - length}`;
-        segment.style.strokeDashoffset = `${-offset}`;
+    let start = null;
+    const duration = 900;
+    function step(ts) {
+      if (!start) start = ts;
+      const eased = 1 - Math.pow(1 - Math.min(1, (ts - start) / duration), 3);
+      segs.forEach(seg => {
+        const len = parseFloat(seg.getAttribute('data-len'));
+        const off = parseFloat(seg.getAttribute('data-offset'));
+        seg.setAttribute('stroke-dasharray', `${(len * eased).toFixed(2)} ${(DONUT_CIRCUMFERENCE - len * eased).toFixed(2)}`);
+        seg.setAttribute('stroke-dashoffset', String(-off));
       });
-      requestAnimationFrame(() => requestAnimationFrame(() => originalSvg.classList.add('is-drawn')));
-      return;
+      if (eased < 1) requestAnimationFrame(step);
     }
-
-    const chartData = [...panel.querySelectorAll('.asset-item')].map(item => ({
-      name: item.querySelector('.asset-name')?.innerText.trim() || '',
-      value: parseFloat(item.querySelector('.asset-pct')?.innerText) || 0,
-      color: getComputedStyle(item.querySelector('.asset-color-dot')).backgroundColor
-    })).filter(item => item.name && item.value);
-    if (!chartData.length) return;
-
-    const label = panel.querySelector('.donut-center-lbl')?.innerText || 'Tăng trưởng';
-    const value = panel.querySelector('.donut-center-val')?.innerText || '';
-    const radius = 72;
-    const circumference = 2 * Math.PI * radius;
-    let offset = 0;
-    const segments = chartData.map((item, index) => {
-      const length = circumference * item.value / 100;
-      const markup = `<circle class="donut3d-segment" cx="110" cy="110" r="${radius}" pathLength="${circumference}" stroke="${item.color}" stroke-dasharray="${length} ${circumference - length}" stroke-dashoffset="${-offset}" style="--segment-delay:${index * 140}ms"><title>${item.name}: ${item.value}%</title></circle>`;
-      offset += length;
-      return markup;
-    }).join('');
-    const filterId = `donutShadow-${panel.dataset.panel}`;
-
-    container.innerHTML = `<div class="portfolio2d" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
-      <span class="portfolio2d-halo" aria-hidden="true"></span>
-      <svg class="portfolio2d-chart" viewBox="0 0 220 220" aria-hidden="true">
-        <defs><filter id="${filterId}" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#063d2e" flood-opacity=".14"/></filter></defs>
-        <circle class="portfolio2d-track" cx="110" cy="110" r="${radius}"/>
-        <g filter="url(#${filterId})">${segments}</g>
-        <circle class="portfolio2d-inner-ring" cx="110" cy="110" r="52"/>
-      </svg>
-      <div class="portfolio2d-center"><span>${label}</span><strong>${value}</strong><small>/ năm</small></div>
-    </div>`;
+    requestAnimationFrame(step);
   }
 
   // Tier pills switcher
@@ -313,33 +160,24 @@
       const target = document.querySelector(`.tier-panel[data-panel="${this.getAttribute('data-tier')}"]`);
       if (target) {
         target.classList.add('active');
-        // Use a small timeout to ensure the panel is visible before rendering the chart
-        setTimeout(() => createNative3dDonut(target), 50);
+        animateDonut(target);
       }
     });
   });
 
   // Trigger donut when section is visible
   const tierSection = document.getElementById('danh-muc');
-  if (tierSection) {
-    if ('IntersectionObserver' in window) {
-        const tio = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                const activePanel = document.querySelector('.tier-panel.active');
-                if (activePanel) {
-                    createNative3dDonut(activePanel);
-                }
-                tio.disconnect();
-            }
-        }, { threshold: 0.2 });
-        tio.observe(tierSection);
-    } else {
-        // Fallback for older browsers
+  if (tierSection && 'IntersectionObserver' in window) {
+    const tio = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
         const activePanel = document.querySelector('.tier-panel.active');
         if (activePanel) {
-            createNative3dDonut(activePanel);
+          animateDonut(activePanel);
         }
-    }
+        tio.disconnect();
+      }
+    }, { threshold: 0.2 });
+    tio.observe(tierSection);
   }
 
   // --- INVESTMENT CALCULATOR ---
