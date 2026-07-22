@@ -1323,6 +1323,12 @@ select.form-input {
   cursor: pointer;
 }
 
+/* Style for the dropdown options */
+select.form-input option {
+  background: var(--brand-green-dark);
+  color: var(--paper);
+}
+
 .range-slider {
   width: 100%;
   accent-color: var(--brand-green-light);
