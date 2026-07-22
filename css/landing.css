@@ -53,6 +53,7 @@
     background: linear-gradient(90deg, #105031 0%, #34893E 50%, #58C24B 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     text-shadow: none;
     line-height: 1.5;
@@ -260,6 +261,7 @@
     background-color: rgba(245, 245, 245, 1);
     backdrop-filter: blur(30px);
     opacity: 1;
+    will-change: transform, box-shadow;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     overflow: hidden;
 }
@@ -273,18 +275,18 @@
     content: "";
     position: absolute;
     top: 0;
-    left: -150%;
+    left: 0;
     width: 50%;
     height: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
-    transform: skewX(-25deg);
-    transition: left 0.7s ease;
+    transform: skewX(-25deg) translateX(-250%);
+    transition: transform 0.7s ease;
     z-index: 2;
     pointer-events: none;
 }
 
 .personal-card:hover::after {
-    left: 200%;
+    transform: skewX(-25deg) translateX(350%);
 }
 
 .personal-card::before {
@@ -320,6 +322,7 @@
     background: linear-gradient(55.48deg, #105031 14.71%, #34893E 68.63%, #58C24B 101.44%);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     padding: 20px 0 0px;
 }
@@ -365,6 +368,7 @@
     background: linear-gradient(55.48deg, #105031 14.71%, #34893E 68.63%, #58C24B 101.44%);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     margin: 0 0 0 75px;
     padding: 0;
@@ -437,6 +441,7 @@
     background: linear-gradient(55.48deg, #105031 14.71%, #34893E 68.63%, #58C24B 101.44%);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     margin: 0;
     padding: 0;
@@ -490,6 +495,7 @@
     background: linear-gradient(55.48deg, #105031 14.71%, #34893E 68.63%, #58C24B 101.44%);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     margin: 0;
     padding: 0;
@@ -582,6 +588,7 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.4s ease;
+    will-change: transform, box-shadow;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -648,6 +655,7 @@
     background:
         linear-gradient(#ffffff, #ffffff) padding-box,
         linear-gradient(55.48deg, #105031 14.71%, #34893E 68.63%, #58C24B 101.44%) border-box;
+    will-change: transform, box-shadow;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -780,16 +788,17 @@
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
     pointer-events: none;
 }
 
 .cta-top--primary:hover::after {
-    left: 100%;
+    transform: translateX(100%);
 }
 
 /* Khối 2: border gradient, nền trong suốt */
@@ -871,6 +880,7 @@
 }
 
 .use-item-img > div {
+    will-change: transform;
     transition: transform 0.3s ease;
 }
 
@@ -1002,8 +1012,8 @@
 .fade-in-up {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    will-change: opacity, transform;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform; /* Hint for performance */
 }
 .fade-in-up.in-view {
     opacity: 1;
