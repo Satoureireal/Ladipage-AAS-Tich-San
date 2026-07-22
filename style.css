@@ -1666,12 +1666,22 @@ textarea.contact-input {
 }
 
 .glass-card-light::before,.tier-panels-wrap::before,.contact-form-card::before,
-.glass-card::before,.calc-wrapper::before,.step-card::before {
+.glass-card::before,.step-card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(118deg,rgba(255,255,255,.48) 0%,rgba(255,255,255,.10) 24%,transparent 43%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.calc-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(118deg, rgba(227, 176, 122, 0.15) 0%, rgba(227, 176, 122, 0.05) 24%, transparent 43%);
   pointer-events: none;
   z-index: 0;
 }
