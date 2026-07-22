@@ -255,6 +255,22 @@
     const container = panel.querySelector('.donut-wrap');
     if (!container) return;
 
+    // Restore and animate the original 2D SVG shipped in index.html.
+    const originalSvg = container.querySelector('svg:not(.portfolio2d-chart):not(.donut3d-chart)');
+    if (originalSvg) {
+      originalSvg.classList.remove('is-drawn');
+      originalSvg.querySelectorAll('.donut-seg').forEach(segment => {
+        const length = Number(segment.dataset.len) || 0;
+        const offset = Number(segment.dataset.offset) || 0;
+        segment.style.setProperty('--seg-length', length);
+        segment.style.setProperty('--seg-offset', -offset);
+        segment.style.strokeDasharray = `${length} ${439.82 - length}`;
+        segment.style.strokeDashoffset = `${-offset}`;
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => originalSvg.classList.add('is-drawn')));
+      return;
+    }
+
     const chartData = [...panel.querySelectorAll('.asset-item')].map(item => ({
       name: item.querySelector('.asset-name')?.innerText.trim() || '',
       value: parseFloat(item.querySelector('.asset-pct')?.innerText) || 0,
@@ -275,11 +291,15 @@
     }).join('');
     const filterId = `donutShadow-${panel.dataset.panel}`;
 
-    container.innerHTML = `<div class="donut3d-scene donut3d-render" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
-      <div class="donut3d-float">
-        <img class="donut3d-image" src="assets/portfolio-3d.png" alt="" aria-hidden="true">
-        <div class="donut3d-center"><span>${label}</span><strong>${value}</strong></div>
-      </div>
+    container.innerHTML = `<div class="portfolio2d" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
+      <span class="portfolio2d-halo" aria-hidden="true"></span>
+      <svg class="portfolio2d-chart" viewBox="0 0 220 220" aria-hidden="true">
+        <defs><filter id="${filterId}" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#063d2e" flood-opacity=".14"/></filter></defs>
+        <circle class="portfolio2d-track" cx="110" cy="110" r="${radius}"/>
+        <g filter="url(#${filterId})">${segments}</g>
+        <circle class="portfolio2d-inner-ring" cx="110" cy="110" r="52"/>
+      </svg>
+      <div class="portfolio2d-center"><span>${label}</span><strong>${value}</strong><small>/ năm</small></div>
     </div>`;
   }
 
