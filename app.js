@@ -217,6 +217,43 @@
     });
   }
 
+  // Native animated 3D donut. This intentionally has no third-party dependency.
+  function createNative3dDonut(panel) {
+    const container = panel.querySelector('.donut-wrap');
+    if (!container) return;
+
+    const chartData = [...panel.querySelectorAll('.asset-item')].map(item => ({
+      name: item.querySelector('.asset-name')?.innerText.trim() || '',
+      value: parseFloat(item.querySelector('.asset-pct')?.innerText) || 0,
+      color: getComputedStyle(item.querySelector('.asset-color-dot')).backgroundColor
+    })).filter(item => item.name && item.value);
+    if (!chartData.length) return;
+
+    const label = panel.querySelector('.donut-center-lbl')?.innerText || 'Tăng trưởng';
+    const value = panel.querySelector('.donut-center-val')?.innerText || '';
+    const radius = 72;
+    const circumference = 2 * Math.PI * radius;
+    let offset = 0;
+    const segments = chartData.map((item, index) => {
+      const length = circumference * item.value / 100;
+      const markup = `<circle class="donut3d-segment" cx="110" cy="110" r="${radius}" pathLength="${circumference}" stroke="${item.color}" stroke-dasharray="${length} ${circumference - length}" stroke-dashoffset="${-offset}" style="--segment-delay:${index * 140}ms"><title>${item.name}: ${item.value}%</title></circle>`;
+      offset += length;
+      return markup;
+    }).join('');
+    const filterId = `donutShadow-${panel.dataset.panel}`;
+
+    container.innerHTML = `<div class="donut3d-scene" role="img" aria-label="Phân bổ danh mục: ${chartData.map(item => `${item.name} ${item.value}%`).join(', ')}">
+      <div class="donut3d-float">
+        <svg class="donut3d-chart" viewBox="0 0 220 220" aria-hidden="true">
+          <defs><filter id="${filterId}" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="18" stdDeviation="10" flood-color="#052e24" flood-opacity=".32"/></filter></defs>
+          <g class="donut3d-depth" filter="url(#${filterId})"><circle cx="110" cy="122" r="${radius}"/><circle cx="110" cy="117" r="${radius}"/><circle cx="110" cy="112" r="${radius}"/></g>
+          <g class="donut3d-face"><circle class="donut3d-track" cx="110" cy="110" r="${radius}"/>${segments}<ellipse class="donut3d-highlight" cx="110" cy="91" rx="57" ry="32"/></g>
+        </svg>
+        <div class="donut3d-center"><span>${label}</span><strong>${value}</strong></div>
+      </div><span class="donut3d-orbit" aria-hidden="true"></span>
+    </div>`;
+  }
+
   // Tier pills switcher
   document.querySelectorAll('.tier-pill').forEach(pill => {
     pill.addEventListener('click', function () {
@@ -228,7 +265,7 @@
       if (target) {
         target.classList.add('active');
         // Use a small timeout to ensure the panel is visible before rendering the chart
-        setTimeout(() => create3dDonut(target), 50);
+        setTimeout(() => createNative3dDonut(target), 50);
       }
     });
   });
@@ -241,7 +278,7 @@
             if (entries[0].isIntersecting) {
                 const activePanel = document.querySelector('.tier-panel.active');
                 if (activePanel) {
-                    create3dDonut(activePanel);
+                    createNative3dDonut(activePanel);
                 }
                 tio.disconnect();
             }
@@ -251,7 +288,7 @@
         // Fallback for older browsers
         const activePanel = document.querySelector('.tier-panel.active');
         if (activePanel) {
-            create3dDonut(activePanel);
+            createNative3dDonut(activePanel);
         }
     }
   }

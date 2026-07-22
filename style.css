@@ -510,7 +510,9 @@ h1, h2, h3, h4, h5, h6, p {
   width: 85%;
   max-width: 380px;
   height: 100vh;
-  background: var(--brand-green-deep);
+  background: rgba(2, 26, 18, 0.92); /* Dark emerald glass background */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid var(--glass-border-dark);
   z-index: 1001;
   padding: 80px 28px 32px;
@@ -803,6 +805,78 @@ body {
 }
 
 /* ============================================================
+   KPI Bar (in Audience Section)
+   ============================================================ */
+.kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin: 48px 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+@media (max-width: 992px) {
+  .kpi-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-bar {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .kpi-item {
+    text-align: center;
+  }
+}
+
+.kpi-item {
+  text-align: left;
+  position: relative;
+}
+
+.kpi-val {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--brand-green-light);
+  line-height: 1.1;
+}
+
+.kpi-val span {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.kpi-lbl {
+  font-size: 0.85rem;
+  color: var(--mist-text);
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.kpi-progress {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.kpi-fill {
+  height: 100%;
+  width: 0;
+  background: var(--brand-gold-glow);
+  border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kpi-fill.animated {
+  width: var(--w, 0%);
+}
+
+/* ============================================================
    SECTION 4 — WHY CHOOSE AAS TÍCH SẢN
    ============================================================ */
 .why-grid {
@@ -1030,6 +1104,26 @@ body {
   /* Hide the old label, Highcharts will draw it */
   display: none;
 }
+
+/* Animated 3D portfolio donut (native SVG/CSS) */
+.donut3d-scene { position:relative; width:min(100%,360px); aspect-ratio:1; display:grid; place-items:center; perspective:900px; }
+.donut3d-float { position:relative; width:88%; aspect-ratio:1; transform-style:preserve-3d; animation:donut3d-float 4.5s ease-in-out infinite; }
+.donut3d-chart { width:100%; height:100%; overflow:visible; transform:rotateX(57deg) rotateZ(-90deg); transform-origin:center; transform-style:preserve-3d; }
+.donut3d-track,.donut3d-segment,.donut3d-depth circle { fill:none; stroke-width:34; }
+.donut3d-track { stroke:#e7eee9; }
+.donut3d-depth circle { stroke:#075b43; opacity:.52; }
+.donut3d-segment { stroke-linecap:butt; opacity:0; animation:donut3d-draw 1.15s cubic-bezier(.22,.8,.25,1) forwards; animation-delay:var(--segment-delay); transition:filter .25s ease,stroke-width .25s ease; }
+.donut3d-segment:hover { filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,.7)); stroke-width:39; }
+.donut3d-highlight { fill:none; stroke:rgba(255,255,255,.28); stroke-width:3; }
+.donut3d-center { position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-45%); width:42%; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:var(--sage-text); background:radial-gradient(circle at 40% 30%,#fff 0,#f1f8f4 68%,#d6e9df 100%); box-shadow:0 12px 30px rgba(2,61,40,.16),inset 0 1px 2px #fff; border:1px solid rgba(16,185,129,.18); }
+.donut3d-center span { font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+.donut3d-center strong { color:var(--brand-green); font-size:1.85rem; line-height:1.15; }
+.donut3d-orbit { position:absolute; width:91%; height:30%; border:1px solid rgba(16,185,129,.22); border-radius:50%; transform:rotate(-8deg); z-index:-1; }
+.donut3d-orbit::after { content:''; position:absolute; width:8px; height:8px; border-radius:50%; background:var(--brand-gold); box-shadow:0 0 15px var(--brand-gold); animation:donut3d-orbit 4s linear infinite; }
+@keyframes donut3d-draw { from { opacity:0; stroke-dashoffset:440; } to { opacity:1; } }
+@keyframes donut3d-float { 0%,100% { transform:translateY(3px) rotateY(-2deg); } 50% { transform:translateY(-9px) rotateY(3deg); } }
+@keyframes donut3d-orbit { 0% { left:4%; top:48%; } 50% { left:94%; top:48%; } 100% { left:4%; top:48%; } }
+@media (prefers-reduced-motion:reduce) { .donut3d-float,.donut3d-orbit::after { animation:none; } .donut3d-segment { animation-duration:.01ms; } }
 
 /* ============================================================
    SECTION 8 — INTERACTIVE INVESTMENT CALCULATOR
