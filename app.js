@@ -19,6 +19,28 @@
     return isNaN(val) ? 0 : val;
   }
 
+  // --- PREMIUM STROKE ICON SYSTEM ---
+  const iconPaths = {
+    target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M15 9l5-5m0 0v4m0-4h-4"/>',
+    shield: '<path d="M12 3l7 3v5c0 4.7-2.8 8-7 10-4.2-2-7-5.3-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/>',
+    compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/>',
+    eye: '<path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.5"/>',
+    layers: '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5"/>',
+    sliders: '<path d="M4 6h7m4 0h5M4 12h2m4 0h10M4 18h10m4 0h2"/><circle cx="13" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="18" r="2"/>',
+    analytics: '<path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/><path d="M3 8l6-4 6 5 5-4"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.4 3.5-7 8-7s7.2 2.6 8 7"/>',
+    route: '<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M7.5 16.5c2-2 1-5 3-6.5s4 .5 6-2.5"/>',
+    wallet: '<path d="M4 6h14a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a3 3 0 013-3h12"/><path d="M15 12h5v4h-5a2 2 0 010-4z"/>',
+    refresh: '<path d="M20 7v5h-5M4 17v-5h5"/><path d="M18.5 9A7 7 0 006 6.5L4 9m2 6a7 7 0 0012 2l2-2"/>',
+    handshake: '<path d="M8 12l3-3a2 2 0 013 0l2 2m-8 1l4 4a2 2 0 003 0l5-5M2 8l4-3 3 3m13 0l-4-3-3 3"/><path d="M5 16l3 3m-1-5l4 4"/>',
+    message: '<path d="M21 11.5a8.5 8.5 0 01-9 8.5 10 10 0 01-4-.8L3 21l1.8-4.5A8.5 8.5 0 1121 11.5z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/>'
+  };
+  const strokeIcon = (name, tone = 'gold') => `<span class="stroke-icon ${tone}" aria-hidden="true"><svg viewBox="0 0 24 24">${iconPaths[name]}</svg></span>`;
+  document.querySelectorAll('.why-header').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['target','shield','compass','eye'][i])));
+  document.querySelectorAll('.method-card').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['layers','sliders','analytics'][i], 'inverse')));
+  document.querySelectorAll('.step-card').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['user','route','wallet','eye','refresh','handshake'][i], 'inverse')));
+  document.querySelector('.contact-form-card h3')?.insertAdjacentHTML('beforebegin', strokeIcon('message'));
+
   // --- NAVBAR SCROLL ---
   const navHeader = document.getElementById('navHeader');
   function handleNavScroll() {
