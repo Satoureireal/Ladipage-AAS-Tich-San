@@ -1325,8 +1325,9 @@ select.form-input {
 
 /* Style for the dropdown options */
 select.form-input option {
-  background: var(--brand-green-dark);
-  color: var(--paper);
+  background: #F0FAF6; /* Light green background for better compatibility */
+  color: var(--ink-text); /* Dark text for readability */
+  font-weight: 600;
 }
 
 .range-slider {
