@@ -240,14 +240,16 @@
     if (resGain)    resGain.textContent    = formatVND(Math.max(0, target - totalDeposit));
     renderCalcChart(initial, pmt, annualRate, years);
   }
-
   function renderCalcChart(initial, pmt, annualRate, years) {
     const svg = document.getElementById('calcChart');
     if (!svg) return;
     const w = 480, h = 180, pad = 20;
     const rm = Math.pow(1 + annualRate, 1 / 12) - 1;
     const gPts = [], pPts = [];
-    for (let y = 0; y <= years; y++) {
+    // Use more steps for a smoother curve
+    const numSteps = Math.max(60, years * 4);
+    for (let i = 0; i <= numSteps; i++) {
+      const y = (i / numSteps) * years;
       const m = y * 12;
       const fv = rm > 0
         ? initial * Math.pow(1 + rm, m) + pmt * ((Math.pow(1 + rm, m) - 1) / rm)
@@ -255,15 +257,39 @@
       gPts.push({ y, v: fv });
       pPts.push({ y, v: initial + pmt * m });
     }
-    const maxV = Math.max(gPts[gPts.length - 1].v, 1) * 1.1;
+    const maxV = Math.max(gPts[gPts.length - 1].v, 1) * 1.05;
     const X = y => pad + (y / years) * (w - 2 * pad);
     const Y = v => h - pad - (v / maxV) * (h - 2 * pad);
     const gD = gPts.map((p, i) => `${i ? 'L' : 'M'}${X(p.y).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ');
     const pD = pPts.map((p, i) => `${i ? 'L' : 'M'}${X(p.y).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ');
     const aD = `${gD} L${X(years).toFixed(1)},${(h - pad).toFixed(1)} L${pad},${(h - pad).toFixed(1)} Z`;
-    document.getElementById('calcGrowthLine')?.setAttribute('d', gD);
-    document.getElementById('calcPrincipalLine')?.setAttribute('d', pD);
-    document.getElementById('calcArea')?.setAttribute('d', aD);
+
+    const gLine = document.getElementById('calcGrowthLine');
+    const pLine = document.getElementById('calcPrincipalLine');
+    const area = document.getElementById('calcArea');
+
+    if (gLine) gLine.setAttribute('d', gD);
+    if (pLine) pLine.setAttribute('d', pD);
+    if (area) area.setAttribute('d', aD);
+
+    [gLine, pLine].forEach(line => {
+      if (!line) return;
+      const len = line.getTotalLength();
+      line.style.transition = 'none';
+      line.style.strokeDasharray = len;
+      line.style.strokeDashoffset = len;
+      line.getBoundingClientRect(); // Force reflow
+      line.style.transition = ''; // Re-enable CSS transition
+      line.style.strokeDashoffset = 0;
+    });
+
+    if (area) {
+      area.style.transition = 'none';
+      area.style.opacity = 0;
+      area.getBoundingClientRect(); // Force reflow
+      area.style.transition = ''; // Re-enable CSS transition
+      area.style.opacity = 1;
+    }
   }
 
   document.querySelectorAll('.goal-btn').forEach(btn => {

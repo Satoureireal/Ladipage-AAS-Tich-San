@@ -525,6 +525,26 @@ h1, h2, h3, h4, h5, h6, p {
   overflow-y: auto;
   transition: right 0.4s var(--ease);
   box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+  isolation: isolate;
+  overflow: hidden; /* Contain pseudo-elements */
+}
+
+.mobile-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .08;
+  background-image:
+    linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(400px) rotateX(55deg) scale(1.4);
+  transform-origin: top center;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 75%);
+  mask-image: linear-gradient(to bottom, #000, transparent 75%);
+  animation: luxury-grid-drift 15s linear infinite;
 }
 
 .mobile-menu.open {
@@ -621,7 +641,7 @@ body {
 .hero-title-main {
   font-size: clamp(3.2rem, 5.2vw, 4.6rem);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.2;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -1251,10 +1271,10 @@ body {
 }
 
 .goal-btn.active, .goal-btn:hover {
-  background: linear-gradient(145deg, var(--brand-gold-light), var(--brand-gold-mid));
-  color: var(--ink-text);
-  border-color: rgba(227, 176, 122, 0.6);
-  box-shadow: 0 8px 20px rgba(184, 129, 63, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(145deg, var(--brand-green-light), var(--brand-green));
+  color: #FFFFFF;
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   font-weight: 700;
   transform: translateY(-2px);
 }
@@ -1289,9 +1309,9 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--brand-gold-light);
+  border-color: var(--brand-green-light);
   background: rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 0 15px rgba(227, 176, 122, 0.2);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 0 15px rgba(16, 185, 129, 0.3);
 }
 
 .range-slider {
@@ -1336,6 +1356,15 @@ body {
 .calc-chart-wrap svg {
   width: 100%;
   height: 100%;
+}
+
+/* Animation for calculator chart */
+#calcGrowthLine, #calcPrincipalLine {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#calcArea {
+  transition: opacity 0.8s ease 0.4s;
 }
 
 /* ============================================================
@@ -1645,7 +1674,7 @@ textarea.contact-input {
 .tier-pill:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 13px 30px rgba(2,61,40,.14),inset 0 1px 0 #fff; }
 .tier-pill.active { background: linear-gradient(145deg,rgba(16,185,129,.92),rgba(0,137,91,.88)); border-color:rgba(255,255,255,.42); box-shadow:0 12px 30px rgba(16,185,129,.3),inset 0 1px 0 rgba(255,255,255,.45); }
 
-.contact-input, select {
+.contact-input {
   background: rgba(255,255,255,.54) !important;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
