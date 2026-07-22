@@ -654,6 +654,69 @@ body {
   }
 }
 
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .hero-btns {
+    justify-content: center;
+  }
+}
+
+/* Animated stats row in Hero */
+.hero-stats-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.hstat {
+  flex: 1;
+  padding: 18px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(2, 44, 34, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border-dark);
+  text-align: center;
+  transition: all 0.3s var(--ease);
+}
+
+.hstat:hover {
+  transform: translateY(-4px);
+  background: rgba(6, 95, 70, 0.7);
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.hstat-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--brand-green-light);
+  line-height: 1.1;
+}
+
+.hstat-val span {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+.hstat-lbl {
+  font-size: 0.8rem;
+  color: var(--mist-text);
+  margin-top: 4px;
+}
+
+.hstat-div {
+  width: 1px;
+  background: var(--line-dark);
+  height: 40px;
+}
+
 .hero-media-wrapper {
   position: relative;
 }
@@ -700,6 +763,18 @@ body {
   bottom: 32px;
   right: -24px;
   animation-delay: 2s;
+}
+
+@media (max-width: 992px) {
+  .hero-stats-row {
+    margin-top: 40px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-stats-row { flex-direction: column; gap: 10px; }
+  .hstat-div { display: none; }
 }
 
 @keyframes floatAnim {
