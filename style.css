@@ -513,7 +513,7 @@ h1, h2, h3, h4, h5, h6, p {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid var(--glass-border-dark);
-  z-index: 1001;
+  z-index: 10001;
   padding: 80px 28px 32px;
   display: flex;
   flex-direction: column;
@@ -580,7 +580,7 @@ h1, h2, h3, h4, h5, h6, p {
   inset: 0;
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(4px);
-  z-index: 999;
+  z-index: 10000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
