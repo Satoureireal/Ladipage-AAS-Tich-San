@@ -51,21 +51,42 @@
   handleNavScroll();
 
   // --- MOBILE MENU DRAWER ---
-  const burgerBtn   = document.getElementById('burgerBtn');
-  const mobileMenu  = document.getElementById('mobileMenu');
-  const menuOverlay = document.getElementById('menuOverlay');
+  const burgerBtn    = document.getElementById('burgerBtn');
+  const mobileMenu   = document.getElementById('mobileMenu');
+  const menuOverlay  = document.getElementById('menuOverlay');
   const closeMenuBtn = document.getElementById('closeMenuBtn');
 
-  function openMenu()  { mobileMenu?.classList.add('open');    menuOverlay?.classList.add('open'); }
-  function closeMenu() { mobileMenu?.classList.remove('open'); menuOverlay?.classList.remove('open'); }
+  function openMenu() {
+    mobileMenu?.classList.add('open');
+    menuOverlay?.classList.add('open');
+    document.body.classList.add('menu-open');
+    burgerBtn?.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    mobileMenu?.classList.remove('open');
+    menuOverlay?.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    burgerBtn?.setAttribute('aria-expanded', 'false');
+  }
 
   burgerBtn?.addEventListener('click', openMenu);
   closeMenuBtn?.addEventListener('click', closeMenu);
   menuOverlay?.addEventListener('click', closeMenu);
 
-  document.querySelectorAll('.mobile-close-trigger').forEach(el => {
+  // Close on Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Close all mobile nav links (not just triggers)
+  mobileMenu?.querySelectorAll('a').forEach(el => {
     el.addEventListener('click', closeMenu);
   });
+
+  // Swipe left to close
+  let touchStartX = 0;
+  mobileMenu?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  mobileMenu?.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - touchStartX > 60) closeMenu();
+  }, { passive: true });
 
   // --- AMBIENT CURSOR GLOW ---
   const glowHosts = document.querySelectorAll('.on-dark, .result-card');
