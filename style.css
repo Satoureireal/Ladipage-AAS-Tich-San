@@ -1780,15 +1780,19 @@ textarea.contact-input {
   box-shadow: 0 14px 42px rgba(0,20,14,.26),inset 0 1px 0 rgba(255,255,255,.14);
 }
 
-/* Navbar trên nền trắng / sáng — tăng độ đục để chữ vẫn rõ */
+/* Navbar trên nền trắng / sáng — solid hoàn toàn, tắt backdrop-filter */
 #navHeader.nav-header.on-light {
-  background: linear-gradient(180deg,rgba(3,54,39,.93),rgba(2,35,26,.88)) !important;
-  border-bottom-color: rgba(255,255,255,.22);
-  box-shadow: 0 10px 38px rgba(0,20,14,.32),inset 0 1px 0 rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgb(4,68,50), rgb(3,46,34)) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-bottom-color: rgba(255,255,255,.18);
+  box-shadow: 0 4px 24px rgba(0,20,14,.28), inset 0 1px 0 rgba(255,255,255,.14);
 }
 #navHeader.nav-header.on-light.scrolled {
-  background: linear-gradient(180deg,rgba(3,60,43,.97),rgba(2,38,28,.94)) !important;
-  box-shadow: 0 14px 42px rgba(0,20,14,.38),inset 0 1px 0 rgba(255,255,255,.18);
+  background: linear-gradient(180deg, rgb(3,60,44), rgb(2,38,26)) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 8px 32px rgba(0,20,14,.36), inset 0 1px 0 rgba(255,255,255,.16);
 }
 
 #navHeader .brand-logo { color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.18); }
