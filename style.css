@@ -131,9 +131,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* Financial Dark Section Theme */
 .on-dark {
-  background: 
-    radial-gradient(ellipse 1000px 600px at 20% -10%, rgba(16, 185, 129, 0.25), transparent 60%),
-    linear-gradient(180deg, var(--brand-green-deep) 0%, var(--brand-green-dark) 100%);
+  background:
+    linear-gradient(rgba(2, 44, 34, 0.28), rgba(2, 44, 34, 0.28)),
+    url("images/bg_chung.jpg") center / cover no-repeat;
   color: var(--paper);
 }
 
@@ -612,6 +612,9 @@ h1, h2, h3, h4, h5, h6, p {
   align-items: center;
   position: relative;
   overflow: hidden;
+  background:
+    linear-gradient(rgba(2, 32, 24, 0.18), rgba(2, 32, 24, 0.18)),
+    url("images/BG.jpg") center / cover no-repeat;
 }
 
 /* Ensure body doesn't overlap behind Robo header */
@@ -1590,7 +1593,9 @@ textarea.contact-input {
    FOOTER & STICKY MOBILE CTA
    ============================================================ */
 .footer-sec {
-  background: var(--brand-green-deep);
+  background:
+    linear-gradient(rgba(2, 44, 34, 0.3), rgba(2, 44, 34, 0.3)),
+    url("images/bg_chung.jpg") center / cover no-repeat;
   color: var(--mist-text);
   padding: 60px 0 30px;
   border-top: 1px solid var(--glass-border-dark);
