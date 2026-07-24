@@ -1779,6 +1779,18 @@ textarea.contact-input {
   background: linear-gradient(180deg,rgba(3,54,39,.78),rgba(2,35,26,.68)) !important;
   box-shadow: 0 14px 42px rgba(0,20,14,.26),inset 0 1px 0 rgba(255,255,255,.14);
 }
+
+/* Navbar trên nền trắng / sáng — tăng độ đục để chữ vẫn rõ */
+#navHeader.nav-header.on-light {
+  background: linear-gradient(180deg,rgba(3,54,39,.93),rgba(2,35,26,.88)) !important;
+  border-bottom-color: rgba(255,255,255,.22);
+  box-shadow: 0 10px 38px rgba(0,20,14,.32),inset 0 1px 0 rgba(255,255,255,.16);
+}
+#navHeader.nav-header.on-light.scrolled {
+  background: linear-gradient(180deg,rgba(3,60,43,.97),rgba(2,38,28,.94)) !important;
+  box-shadow: 0 14px 42px rgba(0,20,14,.38),inset 0 1px 0 rgba(255,255,255,.18);
+}
+
 #navHeader .brand-logo { color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.18); }
 #navHeader .nav-link { color:rgba(255,255,255,.82); }
 #navHeader .nav-link:hover,#navHeader .nav-item:hover > .nav-link { color:var(--brand-gold-light); }

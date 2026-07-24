@@ -43,9 +43,26 @@
 
   // --- NAVBAR SCROLL ---
   const navHeader = document.getElementById('navHeader');
+  const allSections = Array.from(document.querySelectorAll('section[id]'));
+
   function handleNavScroll() {
     if (!navHeader) return;
     navHeader.classList.toggle('scrolled', window.scrollY > 40);
+
+    // Detect which section the navbar is currently over
+    const navBottom = navHeader.offsetHeight;
+    let currentSection = null;
+    for (let i = allSections.length - 1; i >= 0; i--) {
+      const sec = allSections[i];
+      if (sec.getBoundingClientRect().top <= navBottom) {
+        currentSection = sec;
+        break;
+      }
+    }
+
+    // If current section has no on-dark class → it's a light section
+    const isOnLight = currentSection && !currentSection.classList.contains('on-dark');
+    navHeader.classList.toggle('on-light', !!isOnLight);
   }
   window.addEventListener('scroll', handleNavScroll, { passive: true });
   handleNavScroll();
