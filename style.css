@@ -1763,7 +1763,7 @@ textarea.contact-input {
   backdrop-filter: blur(22px) saturate(165%) !important;
   border-bottom: 1px solid rgba(255,255,255,.16);
   box-shadow: 0 10px 38px rgba(0,20,14,.16),inset 0 1px 0 rgba(255,255,255,.12);
-  transition: padding .3s var(--ease),background .3s ease,box-shadow .3s ease;
+  transition: padding .3s var(--ease), background .4s ease, box-shadow .3s ease, backdrop-filter .4s ease;
   isolation: isolate;
 }
 #navHeader.nav-header::before {

@@ -72,7 +72,8 @@
   window.addEventListener('scroll', handleNavScroll, { passive: true });
   // Also run on resize (section heights can change)
   window.addEventListener('resize', handleNavScroll, { passive: true });
-  handleNavScroll();
+  // Delay initial call so sections have rendered heights
+  requestAnimationFrame(() => requestAnimationFrame(handleNavScroll));
 
   // --- MOBILE MENU DRAWER ---
   const burgerBtn    = document.getElementById('burgerBtn');
