@@ -1,3 +1,7 @@
+.hero-title-main {
+    line-height: 1.265;
+}
+
 .job-banner {
     position: relative;
     overflow: hidden;
@@ -933,7 +937,7 @@
 .use-item__step {
     width: 36px;
     height: 36px;
-    border: 2px solid #14A850;
+    border: 2px solid #105031;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -941,7 +945,7 @@
     margin-bottom: 15px;
     font-size: 23px;
     font-weight: 600;
-    color: #14A850;
+    color: #105031;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -976,7 +980,7 @@
 
 .use-item__text p,
 .use-item__text span.text-green-500 {
-    color: #14A850;
+    color: #105031;
     font-weight: 800;
 }
 

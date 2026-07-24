@@ -98,7 +98,7 @@
 
       <div class="nav-actions">
         <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" target="_blank" rel="noopener">Mở Tài Khoản</a>
-        <button class="burger-btn" id="burgerBtn" aria-label="Mở menu">
+        <button class="burger-btn" id="burgerBtn" aria-label="Mở menu" aria-controls="mobileMenu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -107,8 +107,8 @@
   </header>
 
   <!-- Mobile Drawer Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="close-menu-btn" id="closeMenuBtn">&times;</button>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="close-menu-btn" id="closeMenuBtn" aria-label="Đóng menu">&times;</button>
 
     <div class="mobile-nav-group">
       <div class="mobile-nav-title">AAS Tích Sản</div>

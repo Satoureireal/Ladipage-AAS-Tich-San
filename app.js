@@ -61,12 +61,14 @@
     menuOverlay?.classList.add('open');
     document.body.classList.add('menu-open');
     burgerBtn?.setAttribute('aria-expanded', 'true');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
   }
   function closeMenu() {
     mobileMenu?.classList.remove('open');
     menuOverlay?.classList.remove('open');
     document.body.classList.remove('menu-open');
     burgerBtn?.setAttribute('aria-expanded', 'false');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
   }
 
   burgerBtn?.addEventListener('click', openMenu);
@@ -85,7 +87,7 @@
   let touchStartX = 0;
   mobileMenu?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
   mobileMenu?.addEventListener('touchend', e => {
-    if (e.changedTouches[0].clientX - touchStartX > 60) closeMenu();
+    if (e.changedTouches[0].clientX - touchStartX < -60) closeMenu();
   }, { passive: true });
 
   // --- AMBIENT CURSOR GLOW ---
