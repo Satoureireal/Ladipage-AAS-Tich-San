@@ -43,27 +43,27 @@
 
   // --- NAVBAR SCROLL ---
   const navHeader = document.getElementById('navHeader');
-  const allSections = Array.from(document.querySelectorAll('section[id]'));
+
+  function getSectionUnderNav() {
+    if (!navHeader) return null;
+    const navH = navHeader.offsetHeight;
+    // Sample element just below the navbar at center of page
+    const el = document.elementFromPoint(window.innerWidth / 2, navH + 2);
+    if (!el) return null;
+    // Walk up DOM to find closest <section>
+    return el.closest('section') || null;
+  }
 
   function handleNavScroll() {
     if (!navHeader) return;
     navHeader.classList.toggle('scrolled', window.scrollY > 40);
 
-    // Detect which section the navbar is currently over
-    const navBottom = navHeader.offsetHeight;
-    let currentSection = null;
-    for (let i = allSections.length - 1; i >= 0; i--) {
-      const sec = allSections[i];
-      if (sec.getBoundingClientRect().top <= navBottom) {
-        currentSection = sec;
-        break;
-      }
-    }
-
-    // If current section has no on-dark class → it's a light section
-    const isOnLight = currentSection && !currentSection.classList.contains('on-dark');
-    navHeader.classList.toggle('on-light', !!isOnLight);
+    const sec = getSectionUnderNav();
+    // Light section = no on-dark class (or no section found = hero = dark)
+    const isLight = sec ? !sec.classList.contains('on-dark') : false;
+    navHeader.classList.toggle('on-light', isLight);
   }
+
   window.addEventListener('scroll', handleNavScroll, { passive: true });
   handleNavScroll();
 
