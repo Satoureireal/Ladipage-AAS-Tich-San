@@ -38,7 +38,6 @@
   const strokeIcon = (name, tone = 'gold') => `<span class="stroke-icon ${tone}" aria-hidden="true"><svg viewBox="0 0 24 24">${iconPaths[name]}</svg></span>`;
   document.querySelectorAll('.why-header').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['target','shield','compass','eye'][i])));
   document.querySelectorAll('.method-card').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['layers','sliders','analytics'][i], 'inverse')));
-  document.querySelectorAll('.step-card').forEach((el, i) => el.insertAdjacentHTML('afterbegin', strokeIcon(['user','route','wallet','eye','refresh','handshake'][i], 'inverse')));
   document.querySelector('.contact-form-card h3')?.insertAdjacentHTML('beforebegin', strokeIcon('message'));
 
   // --- NAVBAR SCROLL ---
