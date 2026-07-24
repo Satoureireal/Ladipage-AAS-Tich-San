@@ -24,18 +24,7 @@
 
       <!-- Logo -->
       <a href="https://aas.com.vn/" class="brand-logo" title="Smart Invest (AAS)">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <rect width="36" height="36" rx="10" fill="url(#lg1)"/>
-          <path d="M10 26L18 10L26 26H21.5L18 18.5L14.5 26H10Z" fill="#FFFFFF"/>
-          <circle cx="18" cy="13" r="2.5" fill="#E3B07A"/>
-          <defs>
-            <linearGradient id="lg1" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#10B981"/>
-              <stop offset="1" stop-color="#065F46"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <span>AAS <span class="brand-badge">Tích Sản</span></span>
+        <img src="images/logo.png" alt="Smart Invest (AAS)" class="logo-img" width="36" height="36">
       </a>
 
       <!-- Desktop Nav Menu (cấu trúc aas.com.vn) -->
@@ -146,65 +135,29 @@
   <!-- =====================================================
        SECTION 1 — HERO
        ===================================================== -->
-  <section class="hero-section on-dark" id="hero">
-    <div class="glow-layer"></div>
-    <!-- Animated floating particles -->
-    <div class="hero-particles" aria-hidden="true">
-      <span class="particle p1"></span>
-      <span class="particle p2"></span>
-      <span class="particle p3"></span>
-      <span class="particle p4"></span>
-      <span class="particle p5"></span>
-      <span class="particle p6"></span>
-      <span class="particle p7"></span>
-      <span class="particle p8"></span>
-    </div>
-    <!-- Orb glows -->
-    <div class="hero-orb orb-green" aria-hidden="true"></div>
-    <div class="hero-orb orb-gold" aria-hidden="true"></div>
-    <div class="container hero-grid">
-
-      <div class="hero-content reveal">
-        <div class="hero-btns">
-          <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" target="_blank" rel="noopener">Tích sản ngay</a>
+  <section class="hero-section" id="hero" aria-label="AAS Tích Sản — Tích sản mỗi ngày, kiến tạo tương lai">
+    <h1 class="visually-hidden">AAS TÍCH SẢN — Tích sản mỗi ngày, kiến tạo tương lai | Smart Invest (AAS)</h1>
+    <div class="hero-overlay">
+      <div class="hero-btns">
+        <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" target="_blank" rel="noopener">Tích sản ngay</a>
+      </div>
+      <!-- Animated stats row -->
+      <div class="hero-stats-row">
+        <div class="hstat">
+          <div class="hstat-val" data-count="17">0<span>%</span></div>
+          <div class="hstat-lbl">Lợi suất/năm</div>
         </div>
-        <!-- Animated stats row -->
-        <div class="hero-stats-row">
-          <div class="hstat">
-            <div class="hstat-val" data-count="17">0<span>%</span></div>
-            <div class="hstat-lbl">Lợi suất/năm</div>
-          </div>
-          <div class="hstat-div"></div>
-          <div class="hstat">
-            <div class="hstat-val" data-count="5">0<span> gói</span></div>
-            <div class="hstat-lbl">Danh mục</div>
-          </div>
-          <div class="hstat-div"></div>
-          <div class="hstat">
-            <div class="hstat-val" data-count="3">0<span> lớp</span></div>
-            <div class="hstat-lbl">Quản trị AI</div>
-          </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <div class="hstat-val" data-count="5">0<span> gói</span></div>
+          <div class="hstat-lbl">Danh mục</div>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <div class="hstat-val" data-count="3">0<span> lớp</span></div>
+          <div class="hstat-lbl">Quản trị AI</div>
         </div>
       </div>
-
-      <div class="hero-media-wrapper reveal">
-        <div class="hero-image-card">
-          <img src="images/aas-hero-expert-demo.png" alt="Chuyên gia AAS tư vấn chiến lược tích sản dài hạn" width="588" height="482" loading="eager" fetchpriority="high" decoding="async">
-        </div>
-        <div class="hero-float-badge badge-top">
-          <div>
-            <div class="badge-val">+17%/năm</div>
-            <div class="badge-lbl">Lợi suất kỳ vọng tối đa</div>
-          </div>
-        </div>
-        <div class="hero-float-badge badge-bottom">
-          <div>
-            <div class="badge-val">03 Lớp</div>
-            <div class="badge-lbl">Quản trị định lượng & AI</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -590,10 +543,10 @@
             </div>
             <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
               <span style="font-size:0.9rem;color:var(--mist-text);">Lợi nhuận lãi kép dự kiến:</span>
-              <span id="resGain" style="font-weight:700;color:var(--brand-green-light);">0 đ</span>
+              <span id="resGain" style="font-weight:700;color:var(--brand-gold-light);">0 đ</span>
             </div>
           </div>
-          <div class="calc-chart-wrap">
+          <div class="calc-chart-wrap" id="calcChartWrap">
             <svg id="calcChart" viewBox="0 0 480 180" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -604,7 +557,10 @@
               <path id="calcArea" fill="url(#areaGrad)"/>
               <path id="calcPrincipalLine" fill="none" stroke="#C8955A" stroke-width="2" stroke-dasharray="4 4"/>
               <path id="calcGrowthLine" fill="none" stroke="#34D399" stroke-width="3.5"/>
+              <line id="calcHoverLine" x1="0" y1="0" x2="0" y2="180" stroke="#E3B07A" stroke-width="1.5" stroke-dasharray="3 3" opacity="0"/>
+              <circle id="calcHoverDot" r="5" fill="#34D399" stroke="#FFFFFF" stroke-width="2" opacity="0"/>
             </svg>
+            <div id="calcTooltip" class="calc-tooltip"></div>
           </div>
           <a href="https://smarteb.aasp.vn/mo-tai-khoan" class="btn btn-gold" style="width:100%;margin-top:4px;" target="_blank" rel="noopener">Tích sản ngay</a>
           <p style="font-size:0.75rem;color:var(--mist-text);opacity:0.8;text-align:center;margin-top:8px;">*Thông tin chỉ mang tính tham khảo, không phải cam kết lợi nhuận.</p>
@@ -637,11 +593,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="pkg-badge">Ươm Mầm (2tr/tháng)</td><td>10.000.000đ</td><td>10%</td><td>169.227.560đ</td><td>425.665.138đ</td><td>838.660.422đ</td><td>1.503.793.456đ</td></tr>
-            <tr><td class="pkg-badge">An Nhàn (10tr/tháng)</td><td>500.000.000đ</td><td>8%</td><td>1.464.110.542đ</td><td>2.880.705.231đ</td><td>4.962.147.580đ</td><td>8.020.469.264đ</td></tr>
-            <tr><td class="pkg-badge">Cân Bằng (10tr/tháng)</td><td>500.000.000đ</td><td>11%</td><td>1.626.833.613đ</td><td>3.525.613.782đ</td><td>6.725.168.791đ</td><td>12.116.605.050đ</td></tr>
-            <tr><td class="pkg-badge">Tăng Trưởng (10tr/tháng)</td><td>500.000.000đ</td><td>14%</td><td>1.805.613.805đ</td><td>4.319.461.664đ</td><td>9.159.660.991đ</td><td>18.479.051.355đ</td></tr>
-            <tr><td class="pkg-badge">Bứt Phá (10tr/tháng)</td><td>500.000.000đ</td><td>17%</td><td>2.001.678.267đ</td><td>5.294.029.833đ</td><td>12.512.339.558đ</td><td>28.338.108.535đ</td></tr>
+            <tr><td class="pkg-badge" data-label="Danh mục">Ươm Mầm (2tr/tháng)</td><td data-label="Vốn khởi đầu">10.000.000đ</td><td data-label="Lợi suất">10%</td><td data-label="Sau 5 năm">169.227.560đ</td><td data-label="Sau 10 năm">425.665.138đ</td><td data-label="Sau 15 năm">838.660.422đ</td><td data-label="Sau 20 năm">1.503.793.456đ</td></tr>
+            <tr><td class="pkg-badge" data-label="Danh mục">An Nhàn (10tr/tháng)</td><td data-label="Vốn khởi đầu">500.000.000đ</td><td data-label="Lợi suất">8%</td><td data-label="Sau 5 năm">1.464.110.542đ</td><td data-label="Sau 10 năm">2.880.705.231đ</td><td data-label="Sau 15 năm">4.962.147.580đ</td><td data-label="Sau 20 năm">8.020.469.264đ</td></tr>
+            <tr><td class="pkg-badge" data-label="Danh mục">Cân Bằng (10tr/tháng)</td><td data-label="Vốn khởi đầu">500.000.000đ</td><td data-label="Lợi suất">11%</td><td data-label="Sau 5 năm">1.626.833.613đ</td><td data-label="Sau 10 năm">3.525.613.782đ</td><td data-label="Sau 15 năm">6.725.168.791đ</td><td data-label="Sau 20 năm">12.116.605.050đ</td></tr>
+            <tr><td class="pkg-badge" data-label="Danh mục">Tăng Trưởng (10tr/tháng)</td><td data-label="Vốn khởi đầu">500.000.000đ</td><td data-label="Lợi suất">14%</td><td data-label="Sau 5 năm">1.805.613.805đ</td><td data-label="Sau 10 năm">4.319.461.664đ</td><td data-label="Sau 15 năm">9.159.660.991đ</td><td data-label="Sau 20 năm">18.479.051.355đ</td></tr>
+            <tr><td class="pkg-badge" data-label="Danh mục">Bứt Phá (10tr/tháng)</td><td data-label="Vốn khởi đầu">500.000.000đ</td><td data-label="Lợi suất">17%</td><td data-label="Sau 5 năm">2.001.678.267đ</td><td data-label="Sau 10 năm">5.294.029.833đ</td><td data-label="Sau 15 năm">12.512.339.558đ</td><td data-label="Sau 20 năm">28.338.108.535đ</td></tr>
           </tbody>
         </table>
       </div>
@@ -739,11 +695,22 @@
         <div class="contact-form-card reveal">
           <h3 style="font-size:1.4rem;font-weight:700;color:var(--ink-text);margin-bottom:8px;">Liên hệ tư vấn</h3>
           <p style="font-size:0.9rem;color:var(--sage-text);margin-bottom:24px;">Để lại thông tin, đội ngũ chuyên gia của AAS sẽ phản hồi trong thời gian sớm nhất.</p>
-          <form id="contactForm">
-            <input type="text" class="contact-input" placeholder="Tên của bạn" required>
-            <input type="email" class="contact-input" placeholder="Địa chỉ Email" required>
-            <input type="tel" class="contact-input" placeholder="Số điện thoại" required>
-            <textarea class="contact-input" placeholder="Lời nhắn của bạn..."></textarea>
+          <form id="contactForm" novalidate>
+            <div class="form-field-wrap">
+              <input type="text" id="contactName" class="contact-input" placeholder="Tên của bạn" required>
+              <span class="field-error-msg" id="errName"></span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="email" id="contactEmail" class="contact-input" placeholder="Địa chỉ Email" required>
+              <span class="field-error-msg" id="errEmail"></span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="tel" id="contactPhone" class="contact-input" placeholder="Số điện thoại" required>
+              <span class="field-error-msg" id="errPhone"></span>
+            </div>
+            <div class="form-field-wrap">
+              <textarea id="contactMsg" class="contact-input" placeholder="Lời nhắn của bạn..."></textarea>
+            </div>
             <button type="submit" class="btn btn-gold" style="width:100%;">GỬI YÊU CẦU TƯ VẤN</button>
           </form>
         </div>

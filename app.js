@@ -334,11 +334,90 @@
     if (area) {
       area.style.transition = 'none';
       area.style.opacity = 0;
-      area.getBoundingClientRect(); // Force reflow
-      area.style.transition = ''; // Re-enable CSS transition
+      area.getBoundingClientRect(); 
+      area.style.transition = ''; 
       area.style.opacity = 1;
     }
+    svg._chartState = { initial, pmt, annualRate, years, maxV, X, Y };
   }
+
+  (function initChartTooltip() {
+    const wrap = document.getElementById('calcChartWrap');
+    const svg = document.getElementById('calcChart');
+    const hoverLine = document.getElementById('calcHoverLine');
+    const hoverDot = document.getElementById('calcHoverDot');
+    const tooltip = document.getElementById('calcTooltip');
+
+    if (!wrap || !svg || !hoverLine || !hoverDot || !tooltip) return;
+
+    function handleMove(e) {
+      const state = svg._chartState;
+      if (!state) return;
+
+      const rect = svg.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) {
+        handleLeave();
+        return;
+      }
+
+      const svgX = ((clientX - rect.left) / rect.width) * 480;
+      const pad = 20, w = 480;
+      const clampedX = Math.max(pad, Math.min(w - pad, svgX));
+
+      const ratio = (clampedX - pad) / (w - 2 * pad);
+      const currentYear = Math.max(1, Math.min(state.years, Math.round(ratio * state.years)));
+      
+      const m = currentYear * 12;
+      const rm = Math.pow(1 + state.annualRate, 1 / 12) - 1;
+      const principal = state.initial + state.pmt * m;
+      const totalGrowth = rm > 0
+        ? state.initial * Math.pow(1 + rm, m) + state.pmt * ((Math.pow(1 + rm, m) - 1) / rm)
+        : principal;
+
+      const dotX = state.X(currentYear);
+      const dotY = state.Y(totalGrowth);
+
+      hoverLine.setAttribute('x1', dotX);
+      hoverLine.setAttribute('x2', dotX);
+      hoverLine.setAttribute('opacity', '1');
+
+      hoverDot.setAttribute('cx', dotX);
+      hoverDot.setAttribute('cy', dotY);
+      hoverDot.setAttribute('opacity', '1');
+
+      tooltip.innerHTML = `
+        <div class="tt-year">Mốc: Năm thứ ${currentYear}</div>
+        <div class="tt-row">
+          <span>Tổng giá trị:</span>
+          <span class="tt-val-gain">${formatVND(totalGrowth)}</span>
+        </div>
+        <div class="tt-row">
+          <span>Tiền gốc nộp:</span>
+          <span class="tt-val-principal">${formatVND(principal)}</span>
+        </div>
+      `;
+
+      const tooltipLeft = (dotX / 480) * 100;
+      tooltip.style.left = tooltipLeft + '%';
+      tooltip.style.top = (dotY / 180 * 100) + '%';
+      tooltip.classList.add('show');
+    }
+
+    function handleLeave() {
+      hoverLine.setAttribute('opacity', '0');
+      hoverDot.setAttribute('opacity', '0');
+      tooltip.classList.remove('show');
+    }
+
+    wrap.addEventListener('mousemove', handleMove);
+    wrap.addEventListener('mouseleave', handleLeave);
+    wrap.addEventListener('touchstart', handleMove, { passive: true });
+    wrap.addEventListener('touchmove', handleMove, { passive: true });
+    wrap.addEventListener('touchend', handleLeave);
+  })();
 
   document.querySelectorAll('.goal-btn').forEach(btn => {
     btn.addEventListener('click', function () {
@@ -363,8 +442,17 @@
 
   [inpTarget, inpInitial].forEach(inp => {
     if (!inp) return;
-    inp.addEventListener('blur', function () { this.value = formatVND(parseVND(this.value)); calculatePlan(); });
-    inp.addEventListener('input', calculatePlan);
+    inp.addEventListener('blur', function () { 
+      this.value = formatVND(parseVND(this.value)); 
+      calculatePlan(); 
+    });
+    inp.addEventListener('input', function () {
+      const raw = parseVND(this.value);
+      if (raw > 0) {
+        this.value = formatVND(raw);
+      }
+      calculatePlan();
+    });
   });
 
   inpReturn?.addEventListener('change', calculatePlan);
@@ -377,7 +465,6 @@
 
     const trigger = wrapper.querySelector('.cs-selected');
     const valueLabel = wrapper.querySelector('.cs-value');
-    const list = wrapper.querySelector('.cs-list');
     const options = wrapper.querySelectorAll('.cs-option');
 
     function openDropdown() {
@@ -393,7 +480,6 @@
     }
 
     function selectOption(li) {
-      // Update UI
       options.forEach(o => {
         o.classList.remove('cs-active');
         o.removeAttribute('aria-selected');
@@ -401,32 +487,25 @@
       li.classList.add('cs-active');
       li.setAttribute('aria-selected', 'true');
 
-      // Update label (name only, trim the rate span text)
       const rate = li.querySelector('span')?.textContent || '';
       const name = li.childNodes[0].textContent.trim();
       valueLabel.textContent = name + ' (' + rate + ')';
 
-      // Sync native select
       nativeSelect.value = li.dataset.value;
 
-      // Trigger recalculation
       calculatePlan();
       closeDropdown();
     }
 
-    // Click trigger
     trigger.addEventListener('click', e => { e.stopPropagation(); toggleDropdown(); });
 
-    // Click option
     options.forEach(li => {
       li.addEventListener('click', e => { e.stopPropagation(); selectOption(li); });
     });
 
-    // Close on outside click
     document.addEventListener('click', closeDropdown);
     wrapper.addEventListener('click', e => e.stopPropagation());
 
-    // Keyboard navigation
     wrapper.addEventListener('keydown', e => {
       const active = [...options].findIndex(o => o.classList.contains('cs-active'));
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); }
@@ -438,7 +517,6 @@
 
   calculatePlan();
 
-
   // --- FAQ ACCORDION ---
   document.querySelectorAll('.accordion-header').forEach(header => {
     header.addEventListener('click', function () {
@@ -449,12 +527,110 @@
     });
   });
 
-  // --- CONTACT FORM ---
-  document.getElementById('contactForm')?.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Cảm ơn bạn đã đăng ký tư vấn! Chuyên gia AAS sẽ liên hệ phản hồi trong thời gian sớm nhất.');
-    window.open(REGISTRATION_URL, '_blank');
-    this.reset();
-  });
+  // --- TOAST NOTIFICATION COMPONENT ---
+  function showToast(title, message, duration = 5000) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toastContainer';
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'toast-card';
+    toast.innerHTML = `
+      <div class="toast-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="toast-body">
+        <div class="toast-title">${title}</div>
+        <div class="toast-desc">${message}</div>
+      </div>
+      <button class="toast-close" aria-label="Đóng">&times;</button>
+    `;
+    container.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+
+    const removeFn = () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 350);
+    };
+
+    toast.querySelector('.toast-close').addEventListener('click', removeFn);
+    setTimeout(removeFn, duration);
+  }
+
+  // --- CONTACT FORM WITH REAL-TIME VALIDATION ---
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const inpName = document.getElementById('contactName');
+    const inpEmail = document.getElementById('contactEmail');
+    const inpPhone = document.getElementById('contactPhone');
+    const errName = document.getElementById('errName');
+    const errEmail = document.getElementById('errEmail');
+    const errPhone = document.getElementById('errPhone');
+
+    function validateField(input, errEl, checkFn, errorMsg) {
+      const val = input ? input.value.trim() : '';
+      if (!checkFn(val)) {
+        if (input) input.classList.add('error');
+        if (errEl) errEl.textContent = errorMsg;
+        return false;
+      } else {
+        if (input) input.classList.remove('error');
+        if (errEl) errEl.textContent = '';
+        return true;
+      }
+    }
+
+    const checkNotEmpty = val => val.length >= 2;
+    const checkEmail = val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    const checkPhone = val => /^(0|\+84)[3|5|7|8|9][0-9]{8}$/.test(val.replace(/\s/g, ''));
+
+    inpName?.addEventListener('blur', () => validateField(inpName, errName, checkNotEmpty, 'Vui lòng nhập họ và tên của bạn'));
+    inpEmail?.addEventListener('blur', () => validateField(inpEmail, errEmail, checkEmail, 'Vui lòng nhập địa chỉ Email hợp lệ'));
+    inpPhone?.addEventListener('blur', () => validateField(inpPhone, errPhone, checkPhone, 'Vui lòng nhập số điện thoại hợp lệ (10 chữ số)'));
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const isNameValid = validateField(inpName, errName, checkNotEmpty, 'Vui lòng nhập họ và tên của bạn');
+      const isEmailValid = validateField(inpEmail, errEmail, checkEmail, 'Vui lòng nhập địa chỉ Email hợp lệ');
+      const isPhoneValid = validateField(inpPhone, errPhone, checkPhone, 'Vui lòng nhập số điện thoại hợp lệ (10 chữ số)');
+
+      if (!isNameValid || !isEmailValid || !isPhoneValid) {
+        return;
+      }
+
+      showToast('Gửi yêu cầu thành công!', 'Chuyên gia tư vấn AAS sẽ sớm liên hệ lại với bạn qua SĐT/Email.');
+      
+      setTimeout(() => {
+        window.open(REGISTRATION_URL, '_blank');
+      }, 1500);
+
+      this.reset();
+    });
+  }
+
+  // --- MOBILE STICKY CTA AUTO HIDE ON FOOTER/FORM ---
+  const stickyCta = document.querySelector('.mobile-sticky-cta');
+  const footerSec = document.querySelector('.footer-sec');
+  const faqFormCard = document.querySelector('.contact-form-card');
+
+  if (stickyCta && (footerSec || faqFormCard)) {
+    function checkCtaVisibility() {
+      const targets = [footerSec, faqFormCard].filter(Boolean);
+      let isVisible = false;
+      targets.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          isVisible = true;
+        }
+      });
+      stickyCta.classList.toggle('hidden', isVisible);
+    }
+    window.addEventListener('scroll', checkCtaVisibility, { passive: true });
+    window.addEventListener('resize', checkCtaVisibility, { passive: true });
+  }
 
 })();
