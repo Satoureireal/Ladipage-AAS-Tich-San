@@ -43,28 +43,35 @@
 
   // --- NAVBAR SCROLL ---
   const navHeader = document.getElementById('navHeader');
+  const allSections = Array.from(document.querySelectorAll('section'));
 
-  function getSectionUnderNav() {
-    if (!navHeader) return null;
-    const navH = navHeader.offsetHeight;
-    // Sample element just below the navbar at center of page
-    const el = document.elementFromPoint(window.innerWidth / 2, navH + 2);
-    if (!el) return null;
-    // Walk up DOM to find closest <section>
-    return el.closest('section') || null;
+  function getLightSection() {
+    const navH = navHeader ? navHeader.offsetHeight : 0;
+    // Find which section's top edge has passed the bottom of navbar
+    // (iterate in reverse → last one that scrolled past = current)
+    let current = null;
+    for (const sec of allSections) {
+      const rect = sec.getBoundingClientRect();
+      // section top is above or at navbar bottom AND section bottom is below navbar top
+      if (rect.top <= navH && rect.bottom > 0) {
+        current = sec;
+      }
+    }
+    return current;
   }
 
   function handleNavScroll() {
     if (!navHeader) return;
     navHeader.classList.toggle('scrolled', window.scrollY > 40);
 
-    const sec = getSectionUnderNav();
-    // Light section = no on-dark class (or no section found = hero = dark)
+    const sec = getLightSection();
     const isLight = sec ? !sec.classList.contains('on-dark') : false;
     navHeader.classList.toggle('on-light', isLight);
   }
 
   window.addEventListener('scroll', handleNavScroll, { passive: true });
+  // Also run on resize (section heights can change)
+  window.addEventListener('resize', handleNavScroll, { passive: true });
   handleNavScroll();
 
   // --- MOBILE MENU DRAWER ---
