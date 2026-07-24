@@ -1005,7 +1005,7 @@ body {
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: var(--brand-green);
+  color: #105031 !important;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -1047,9 +1047,9 @@ body {
 .audience-num {
   font-size: 2.2rem;
   font-weight: 800;
-  color: var(--brand-green-light);
+  color: var(--brand-gold-light) !important;
   line-height: 1;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .audience-body h3 {
@@ -1099,6 +1099,9 @@ body {
 }
 
 .kpi-val {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--brand-green-light);
@@ -1108,6 +1111,8 @@ body {
 .kpi-val span {
   font-size: 1.5rem;
   opacity: 0.8;
+  display: inline-block;
+  line-height: 1;
 }
 
 .kpi-lbl {
@@ -2433,10 +2438,22 @@ textarea.contact-input {
   padding:18px 14px; text-align:center;
 }
 .kpi-val {
-  font-size:1.8rem; font-weight:800;
-  color:var(--brand-gold-light); line-height:1.1; margin-bottom:4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--brand-gold-light);
+  line-height: 1.1;
+  margin-bottom: 4px;
 }
-.kpi-val span { font-size:.9rem; color:var(--brand-green-light); }
+.kpi-val span {
+  font-size: 0.9rem;
+  color: var(--brand-green-light);
+  display: inline-block;
+  line-height: 1;
+}
 .kpi-lbl {
   font-size:.75rem; color:var(--mist-text); font-weight:600;
   text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px;
