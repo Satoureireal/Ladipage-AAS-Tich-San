@@ -1337,6 +1337,11 @@ select.form-input {
   cursor: pointer;
 }
 
+select.form-input option {
+  color: var(--ink-text);
+  background: var(--paper);
+}
+
 .range-slider {
   width: 100%;
   accent-color: var(--brand-green-light);
