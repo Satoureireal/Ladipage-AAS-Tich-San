@@ -683,14 +683,15 @@ body {
 /* Animated stats row in Hero */
 .hero-stats-row {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-top: 48px;
   align-items: center;
 }
 
 .hstat {
   flex: 1;
-  padding: 16px 12px;
+  min-width: 130px;
+  padding: 16px 20px;
   border-radius: var(--radius-md);
   text-align: center;
   transition: all 0.3s var(--ease);
@@ -731,6 +732,7 @@ body {
   margin-top: 4px;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .hstat-div {
