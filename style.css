@@ -1908,11 +1908,11 @@ textarea.contact-input {
   background:linear-gradient(90deg,transparent,var(--brand-gold-light),transparent);
   opacity:.8;
 }
-#phuong-phap .method-card > .stroke-icon { position:relative; margin:0 0 22px; }
-#phuong-phap .method-tag { margin-bottom:10px; color:var(--brand-gold-light); }
-#phuong-phap .method-title { color:#fff; line-height:1.3; min-height:2.6em; }
-#phuong-phap .method-code { color:#e7bd8d; line-height:1.45; min-height:2.9em; }
-#phuong-phap .method-desc { color:rgba(255,255,255,.74); line-height:1.72; margin-top:10px; }
+#phuong-phap .method-card > .stroke-icon { position:relative; margin:0 0 18px; }
+#phuong-phap .method-tag { margin-bottom: 8px; color:var(--brand-gold-light); }
+#phuong-phap .method-title { color:#fff; line-height:1.3; margin-bottom: 4px; }
+#phuong-phap .method-code { color:#e7bd8d; line-height:1.45; margin-bottom: 12px; }
+#phuong-phap .method-desc { color:rgba(255,255,255,.74); line-height:1.72; margin-top: 0; }
 
 @media (max-width:992px) {
   #phuong-phap .method-card { min-height:0; }
