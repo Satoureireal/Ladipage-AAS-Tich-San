@@ -551,14 +551,27 @@
             <input type="text" id="inpInitial" class="form-input" value="500.000.000 đ">
           </div>
           <div class="form-group">
-            <label class="form-label" for="inpReturn">Danh mục & Lợi suất kỳ vọng:</label>
-            <select id="inpReturn" class="form-input">
-              <option value="10">Ươm mầm (10%/năm)</option>
-              <option value="8">An Nhàn (8%/năm)</option>
-              <option value="11">Cân Bằng (11%/năm)</option>
-              <option value="14" selected>Tăng Trưởng (14%/năm)</option>
-              <option value="17">Bứt Phá (17%/năm)</option>
+            <label class="form-label" for="inpReturn">Danh m&#x1ee5;c &amp; L&#x1ee3;i su&#x1ea5;t k&#x1ef3; v&#x1ecdng:</label>
+            <select id="inpReturn" style="display:none" aria-hidden="true">
+              <option value="10">&#431;&#417;m m&#7847;m (10%/n&#259;m)</option>
+              <option value="8">An Nh&#224;n (8%/n&#259;m)</option>
+              <option value="11">C&#226;n B&#7857;ng (11%/n&#259;m)</option>
+              <option value="14" selected>T&#259;ng Tr&#432;&#7903;ng (14%/n&#259;m)</option>
+              <option value="17">B&#7913;t Ph&#225; (17%/n&#259;m)</option>
             </select>
+            <div class="custom-select" id="customReturnSelect" role="combobox" aria-expanded="false" aria-haspopup="listbox" tabindex="0">
+              <div class="cs-selected">
+                <span class="cs-value">T&#259;ng Tr&#432;&#7903;ng (14%/n&#259;m)</span>
+                <svg class="cs-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <ul class="cs-list" role="listbox">
+                <li class="cs-option" data-value="10" role="option">&#431;&#417;m m&#7847;m <span>10%/n&#259;m</span></li>
+                <li class="cs-option" data-value="8"  role="option">An Nh&#224;n <span>8%/n&#259;m</span></li>
+                <li class="cs-option" data-value="11" role="option">C&#226;n B&#7857;ng <span>11%/n&#259;m</span></li>
+                <li class="cs-option cs-active" data-value="14" role="option" aria-selected="true">T&#259;ng Tr&#432;&#7903;ng <span>14%/n&#259;m</span></li>
+                <li class="cs-option" data-value="17" role="option">B&#7913;t Ph&#225; <span>17%/n&#259;m</span></li>
+              </ul>
+            </div>
           </div>
           <div class="form-group">
             <div style="display:flex;justify-content:space-between;align-items:center;">

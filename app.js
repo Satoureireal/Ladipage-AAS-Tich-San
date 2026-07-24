@@ -343,7 +343,76 @@
   });
 
   inpReturn?.addEventListener('change', calculatePlan);
+
+  // --- CUSTOM SELECT DROPDOWN ---
+  (function initCustomSelect() {
+    const wrapper = document.getElementById('customReturnSelect');
+    const nativeSelect = document.getElementById('inpReturn');
+    if (!wrapper || !nativeSelect) return;
+
+    const trigger = wrapper.querySelector('.cs-selected');
+    const valueLabel = wrapper.querySelector('.cs-value');
+    const list = wrapper.querySelector('.cs-list');
+    const options = wrapper.querySelectorAll('.cs-option');
+
+    function openDropdown() {
+      wrapper.classList.add('open');
+      wrapper.setAttribute('aria-expanded', 'true');
+    }
+    function closeDropdown() {
+      wrapper.classList.remove('open');
+      wrapper.setAttribute('aria-expanded', 'false');
+    }
+    function toggleDropdown() {
+      wrapper.classList.contains('open') ? closeDropdown() : openDropdown();
+    }
+
+    function selectOption(li) {
+      // Update UI
+      options.forEach(o => {
+        o.classList.remove('cs-active');
+        o.removeAttribute('aria-selected');
+      });
+      li.classList.add('cs-active');
+      li.setAttribute('aria-selected', 'true');
+
+      // Update label (name only, trim the rate span text)
+      const rate = li.querySelector('span')?.textContent || '';
+      const name = li.childNodes[0].textContent.trim();
+      valueLabel.textContent = name + ' (' + rate + ')';
+
+      // Sync native select
+      nativeSelect.value = li.dataset.value;
+
+      // Trigger recalculation
+      calculatePlan();
+      closeDropdown();
+    }
+
+    // Click trigger
+    trigger.addEventListener('click', e => { e.stopPropagation(); toggleDropdown(); });
+
+    // Click option
+    options.forEach(li => {
+      li.addEventListener('click', e => { e.stopPropagation(); selectOption(li); });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', closeDropdown);
+    wrapper.addEventListener('click', e => e.stopPropagation());
+
+    // Keyboard navigation
+    wrapper.addEventListener('keydown', e => {
+      const active = [...options].findIndex(o => o.classList.contains('cs-active'));
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); openDropdown(); selectOption(options[Math.min(active + 1, options.length - 1)]); }
+      else if (e.key === 'ArrowUp')   { e.preventDefault(); openDropdown(); selectOption(options[Math.max(active - 1, 0)]); }
+      else if (e.key === 'Escape')    { closeDropdown(); }
+    });
+  })();
+
   calculatePlan();
+
 
   // --- FAQ ACCORDION ---
   document.querySelectorAll('.accordion-header').forEach(header => {
